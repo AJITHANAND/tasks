@@ -7,3 +7,5 @@ protoc --cpp_out=.  <filename.proto>
 
 
 cpp : g++ -o user User.cpp User.pb.cc -lprotobuf
+
+ g++ -std=c++11 -stdlib=libc++ -I/path/to/protobuf/includes User.cc User.pb.cc -L/usr/local/lib -lprotobuf -o new_user

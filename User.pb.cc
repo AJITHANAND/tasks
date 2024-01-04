@@ -14,45 +14,50 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
-class UserDefaultTypeInternal {
- public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<User> _instance;
-} _User_default_instance_;
-static void InitDefaultsscc_info_User_User_2eproto() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-  {
-    void* ptr = &::_User_default_instance_;
-    new (ptr) ::User();
-    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::User::InitAsDefaultInstance();
-}
+PROTOBUF_PRAGMA_INIT_SEG
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_User_User_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_User_User_2eproto}, {}};
+namespace _pb = ::PROTOBUF_NAMESPACE_ID;
+namespace _pbi = _pb::internal;
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_User_2eproto[1];
-static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_User_2eproto = nullptr;
-static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_User_2eproto = nullptr;
+PROTOBUF_CONSTEXPR User::User(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.email_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.phone_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.id_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct UserDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserDefaultTypeInternal() {}
+  union {
+    User _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserDefaultTypeInternal _User_default_instance_;
+static ::_pb::Metadata file_level_metadata_User_2eproto[1];
+static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_User_2eproto = nullptr;
+static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_User_2eproto = nullptr;
 
-const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_User_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+const uint32_t TableStruct_User_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::User, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::User, id_),
-  PROTOBUF_FIELD_OFFSET(::User, name_),
-  PROTOBUF_FIELD_OFFSET(::User, email_),
-  PROTOBUF_FIELD_OFFSET(::User, phone_),
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::User, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::User, _impl_.name_),
+  PROTOBUF_FIELD_OFFSET(::User, _impl_.email_),
+  PROTOBUF_FIELD_OFFSET(::User, _impl_.phone_),
 };
-static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::User)},
+static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  { 0, -1, -1, sizeof(::User)},
 };
 
-static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::_User_default_instance_),
+static const ::_pb::Message* const file_default_instances[] = {
+  &::_User_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_User_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -60,185 +65,212 @@ const char descriptor_table_protodef_User_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "\030\002 \001(\t\022\r\n\005email\030\003 \001(\t\022\r\n\005phone\030\004 \001(\tb\006pr"
   "oto3"
   ;
-static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_User_2eproto_deps[1] = {
+static ::_pbi::once_flag descriptor_table_User_2eproto_once;
+const ::_pbi::DescriptorTable descriptor_table_User_2eproto = {
+    false, false, 84, descriptor_table_protodef_User_2eproto,
+    "User.proto",
+    &descriptor_table_User_2eproto_once, nullptr, 0, 1,
+    schemas, file_default_instances, TableStruct_User_2eproto::offsets,
+    file_level_metadata_User_2eproto, file_level_enum_descriptors_User_2eproto,
+    file_level_service_descriptors_User_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_User_2eproto_sccs[1] = {
-  &scc_info_User_User_2eproto.base,
-};
-static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_User_2eproto_once;
-const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_User_2eproto = {
-  false, false, descriptor_table_protodef_User_2eproto, "User.proto", 84,
-  &descriptor_table_User_2eproto_once, descriptor_table_User_2eproto_sccs, descriptor_table_User_2eproto_deps, 1, 0,
-  schemas, file_default_instances, TableStruct_User_2eproto::offsets,
-  file_level_metadata_User_2eproto, 1, file_level_enum_descriptors_User_2eproto, file_level_service_descriptors_User_2eproto,
-};
+PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_User_2eproto_getter() {
+  return &descriptor_table_User_2eproto;
+}
 
 // Force running AddDescriptors() at dynamic initialization time.
-static bool dynamic_init_dummy_User_2eproto = (static_cast<void>(::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_User_2eproto)), true);
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_User_2eproto(&descriptor_table_User_2eproto);
 
 // ===================================================================
 
-void User::InitAsDefaultInstance() {
-}
 class User::_Internal {
  public:
 };
 
-User::User(::PROTOBUF_NAMESPACE_ID::Arena* arena)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
-  SharedCtor();
-  RegisterArenaDtor(arena);
+User::User(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
   // @@protoc_insertion_point(arena_constructor:User)
 }
 User::User(const User& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
+  User* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.email_){}
+    , decltype(_impl_.phone_){}
+    , decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
-    name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_name(),
-      GetArena());
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
   }
-  email_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  _impl_.email_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.email_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_email().empty()) {
-    email_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_email(),
-      GetArena());
+    _this->_impl_.email_.Set(from._internal_email(), 
+      _this->GetArenaForAllocation());
   }
-  phone_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  _impl_.phone_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.phone_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_phone().empty()) {
-    phone_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_phone(),
-      GetArena());
+    _this->_impl_.phone_.Set(from._internal_phone(), 
+      _this->GetArenaForAllocation());
   }
-  id_ = from.id_;
+  _this->_impl_.id_ = from._impl_.id_;
   // @@protoc_insertion_point(copy_constructor:User)
 }
 
-void User::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_User_User_2eproto.base);
-  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  email_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  phone_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  id_ = 0;
+inline void User::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.email_){}
+    , decltype(_impl_.phone_){}
+    , decltype(_impl_.id_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.email_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.email_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.phone_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.phone_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
 User::~User() {
   // @@protoc_insertion_point(destructor:User)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
   SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-void User::SharedDtor() {
-  GOOGLE_DCHECK(GetArena() == nullptr);
-  name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  email_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  phone_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+inline void User::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.name_.Destroy();
+  _impl_.email_.Destroy();
+  _impl_.phone_.Destroy();
 }
 
-void User::ArenaDtor(void* object) {
-  User* _this = reinterpret_cast< User* >(object);
-  (void)_this;
-}
-void User::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
 void User::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
+  _impl_._cached_size_.Set(size);
 }
-const User& User::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_User_User_2eproto.base);
-  return *internal_default_instance();
-}
-
 
 void User::Clear() {
 // @@protoc_insertion_point(message_clear_start:User)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  name_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  email_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  phone_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  id_ = 0;
+  _impl_.name_.ClearToEmpty();
+  _impl_.email_.ClearToEmpty();
+  _impl_.phone_.ClearToEmpty();
+  _impl_.id_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* User::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* User::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
   while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    CHK_(ptr);
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
       // int32 id = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-        } else goto handle_unusual;
+        } else
+          goto handle_unusual;
         continue;
       // string name = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           auto str = _internal_mutable_name();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "User.name"));
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-        } else goto handle_unusual;
+          CHK_(::_pbi::VerifyUTF8(str, "User.name"));
+        } else
+          goto handle_unusual;
         continue;
       // string email = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
           auto str = _internal_mutable_email();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "User.email"));
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-        } else goto handle_unusual;
+          CHK_(::_pbi::VerifyUTF8(str, "User.email"));
+        } else
+          goto handle_unusual;
         continue;
       // string phone = 4;
       case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
           auto str = _internal_mutable_phone();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "User.phone"));
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-        } else goto handle_unusual;
+          CHK_(::_pbi::VerifyUTF8(str, "User.phone"));
+        } else
+          goto handle_unusual;
         continue;
-      default: {
-      handle_unusual:
-        if ((tag & 7) == 4 || tag == 0) {
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
+      default:
+        goto handle_unusual;
     }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
   }  // while
-success:
+message_done:
   return ptr;
 failure:
   ptr = nullptr;
-  goto success;
+  goto message_done;
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* User::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+uint8_t* User::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
   // @@protoc_insertion_point(serialize_to_array_start:User)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   // int32 id = 1;
-  if (this->id() != 0) {
+  if (this->_internal_id() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(1, this->_internal_id(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_id(), target);
   }
 
   // string name = 2;
-  if (this->name().size() > 0) {
+  if (!this->_internal_name().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -248,7 +280,7 @@ failure:
   }
 
   // string email = 3;
-  if (this->email().size() > 0) {
+  if (!this->_internal_email().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_email().data(), static_cast<int>(this->_internal_email().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -258,7 +290,7 @@ failure:
   }
 
   // string phone = 4;
-  if (this->phone().size() > 0) {
+  if (!this->_internal_phone().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_phone().data(), static_cast<int>(this->_internal_phone().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -268,7 +300,7 @@ failure:
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
   // @@protoc_insertion_point(serialize_to_array_end:User)
@@ -279,88 +311,67 @@ size_t User::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:User)
   size_t total_size = 0;
 
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   // string name = 2;
-  if (this->name().size() > 0) {
+  if (!this->_internal_name().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_name());
   }
 
   // string email = 3;
-  if (this->email().size() > 0) {
+  if (!this->_internal_email().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_email());
   }
 
   // string phone = 4;
-  if (this->phone().size() > 0) {
+  if (!this->_internal_phone().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_phone());
   }
 
   // int32 id = 1;
-  if (this->id() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
-        this->_internal_id());
+  if (this->_internal_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_id());
   }
 
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-void User::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:User)
-  GOOGLE_DCHECK_NE(&from, this);
-  const User* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<User>(
-          &from);
-  if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:User)
-    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:User)
-    MergeFrom(*source);
-  }
-}
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData User::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    User::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*User::GetClassData() const { return &_class_data_; }
 
-void User::MergeFrom(const User& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:User)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+
+void User::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<User*>(&to_msg);
+  auto& from = static_cast<const User&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:User)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.name().size() > 0) {
-    _internal_set_name(from._internal_name());
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
   }
-  if (from.email().size() > 0) {
-    _internal_set_email(from._internal_email());
+  if (!from._internal_email().empty()) {
+    _this->_internal_set_email(from._internal_email());
   }
-  if (from.phone().size() > 0) {
-    _internal_set_phone(from._internal_phone());
+  if (!from._internal_phone().empty()) {
+    _this->_internal_set_phone(from._internal_phone());
   }
-  if (from.id() != 0) {
-    _internal_set_id(from._internal_id());
+  if (from._internal_id() != 0) {
+    _this->_internal_set_id(from._internal_id());
   }
-}
-
-void User::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:User)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void User::CopyFrom(const User& from) {
@@ -376,21 +387,34 @@ bool User::IsInitialized() const {
 
 void User::InternalSwap(User* other) {
   using std::swap;
-  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  email_.Swap(&other->email_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  phone_.Swap(&other->phone_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  swap(id_, other->id_);
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.email_, lhs_arena,
+      &other->_impl_.email_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.phone_, lhs_arena,
+      &other->_impl_.phone_, rhs_arena
+  );
+  swap(_impl_.id_, other->_impl_.id_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata User::GetMetadata() const {
-  return GetMetadataStatic();
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_User_2eproto_getter, &descriptor_table_User_2eproto_once,
+      file_level_metadata_User_2eproto[0]);
 }
-
 
 // @@protoc_insertion_point(namespace_scope)
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::User* Arena::CreateMaybeMessage< ::User >(Arena* arena) {
+template<> PROTOBUF_NOINLINE ::User*
+Arena::CreateMaybeMessage< ::User >(Arena* arena) {
   return Arena::CreateMessageInternal< ::User >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
