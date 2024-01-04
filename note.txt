@@ -1,0 +1,4 @@
+compile :
+
+protoc --cpp_out=.  <filename.proto>
+
