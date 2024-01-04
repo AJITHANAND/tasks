@@ -2,3 +2,8 @@ compile :
 
 protoc --cpp_out=.  <filename.proto>
 
+ protoc --cpp_out=. User.proto
+
+
+
+cpp : g++ -o user User.cpp User.pb.cc -lprotobuf
