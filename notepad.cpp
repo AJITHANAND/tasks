@@ -12,6 +12,13 @@ using namespace std;
 User l_user;
 bool logged = false;
 
+void updateUserProjectCount(int i) {
+    l_user.set_project_count(l_user.project_count() + i);
+    ofstream file(userFile, ios::binary);
+    l_user.SerializeToOstream(&file);
+    file.close();
+}
+
 void displayUserInfo(){
     if(!logged) return;
     cout << l_user.name() << endl;
@@ -95,9 +102,9 @@ void createNotepad() {
 
     Project project;
     project.set_userid(l_user.uid());
-    project.set_name("Notepad");
+    project.set_name("Notepad "+to_string(l_user.project_count()));
     project.set_id(l_user.project_count() + 1);
-    l_user.set_project_count(project.id());
+    updateUserProjectCount(1);
     portal.add_projects()->CopyFrom(project);
 
     ofstream output_file(projectFile, ios::binary);
@@ -119,21 +126,41 @@ void deleteNotepad() {
 }
 
 void editNotepad() {
+
+}
+
+void listProjects() {
+    ifstream input_file(projectFile, ios::binary);
+    projectPortal portal;
+
+    if (input_file.is_open()) {
+        string serializedProjects((istreambuf_iterator<char>(input_file)), (istreambuf_iterator<char>()));
+        input_file.close();
+        portal.ParseFromString(serializedProjects);
+    }
+
+    for (int i = 0; i < portal.projects_size(); i++) {
+        cout << portal.projects(i).name() << endl;
+    }
 }
 
 void loggedInUser() {
     if (!logged) return;
-
+    string temp;
     int option;
     do {
+        cout<<"press enter to continue..."<<endl;
+        getchar();
+        getline(std::cin, temp);
         system("clear");
         cout << "Welcome " << l_user.name() << endl;
         cout << "Choose options:" << endl;
         cout << "1. Create a notepad" << endl;
-        cout << "2. Edit existing notepad" << endl;
-        cout << "3. Delete existing notepad" << endl;
-        cout << "4. Logout && Exit" << endl;
-        cout << "5. User info" << endl;
+        cout << "2. List all projects"<<endl;
+        cout << "3. Edit existing notepad" << endl;
+        cout << "4. Delete existing notepad" << endl;
+        cout << "5. Logout && Exit" << endl;
+        cout << "6. User info" << endl;
         cin >> option;
 
         switch (option) {
@@ -141,15 +168,18 @@ void loggedInUser() {
                 createNotepad();
                 break;
             case 2:
-                editNotepad();
+                listProjects();
                 break;
             case 3:
-                deleteNotepad();
+                editNotepad();
                 break;
             case 4:
-                logged = false;
+                deleteNotepad();
                 break;
             case 5:
+                logged = false;
+                break;
+            case 6:
                 displayUserInfo();
                 getchar();
                 break;
@@ -157,7 +187,7 @@ void loggedInUser() {
                 cout << "Invalid option" << endl;
                 break;
         }
-    } while (option != 4);
+    } while (option != 5);
 }
 
 int main() {
