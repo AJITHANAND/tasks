@@ -1,12 +1,18 @@
 syntax = "proto3";
 
-
-
-
+message Operaion{
+    enum operaion_type{
+        insert = 0;
+        edit = 1;
+        delete = 2;
+    }
+    operaion_type type = 1;
+    string content = 2;
+}
 
 message Version{
     string versionId =1;
-    string content =2;
+    Operaion operation =2;
     string projectId =3;
     string time =4;
     string versionNum =5;
