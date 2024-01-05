@@ -61,33 +61,52 @@ bool login(const char *username, const char *password) {
     }
     return false;
 }
-
-bool registerUser(const char* name, const char* location, const char* email, const char* password) {
-    ifstream file(userFile, ios::binary);
-    try {
-        if (file.is_open()) {
-            string serializedUser((istreambuf_iterator<char>(file)), (istreambuf_iterator<char>()));
-            file.close();
-            User user;
-            user.set_uid(email);
-            user.set_email(email);
-            user.set_psswd_hash(hash_password(password));
-            user.set_name(name);
-            user.set_address(location);
-            user.set_project_count(0);
-            serializedUser.clear();
-            user.SerializeToString(&serializedUser);
-            ofstream file2(userFile, ios::binary);
-            file2.write(serializedUser.c_str(), serializedUser.size());
-            file2.close();
-            cout << "Registration Successful" << endl;
-            return true;
+bool fileExists() {
+    ifstream file(userFile,ios::binary);
+    if (!file.is_open()) {
+        return true;
+        ofstream file2(userFile);
+        if (!file2.is_open()) {
+            return false;
         }
-    } catch (exception& ex) {
-        cout << ex.what() << endl;
+        file2.close();
+    }
+    file.close();
+    return false;
+}
+bool registerUser(const char* name, const char* location, const char* email, const char* password) {
+    // create ifnot exists
+    if(!fileExists()){
+        cout<<"user data file not found.. exiting";
+        exit(1);
+    }
+
+    // read for already registered user
+    ifstream file(userFile, ios::binary);
+    string serializedUser((istreambuf_iterator<char>(file)), (istreambuf_iterator<char>()));
+    file.close();
+    User user;
+    user.ParseFromString(serializedUser);
+
+    if (user.email() == email) {
         return false;
     }
-    return false;
+
+    // Register the user
+    user.set_uid(email);
+    user.set_email(email);
+    user.set_psswd_hash(hash_password(password));
+    user.set_name(name);
+    user.set_address(location);
+    user.set_project_count(0);
+
+    // save 
+    ofstream file2(userFile, ios::binary);
+    user.SerializeToOstream(&file2);
+    file2.close();
+
+    cout << "Registration Successful" << endl;
+    return true;
 }
 
 void createNotepad() {
@@ -102,7 +121,7 @@ void createNotepad() {
 
     Project project;
     project.set_userid(l_user.uid());
-    project.set_name("Notepad "+to_string(l_user.project_count()));
+    project.set_name("Notepad "+to_string(l_user.project_count()+1));
     project.set_id(l_user.project_count() + 1);
     updateUserProjectCount(1);
     portal.add_projects()->CopyFrom(project);
@@ -123,6 +142,36 @@ void createNotepad() {
 }
 
 void deleteNotepad() {
+    cout <<"Enter notepad number :";
+    int n;
+    cin >> n;
+    bool found = false;
+    if(n < 1 || n > l_user.project_count()){
+        cout << "Invalid notepad number";
+        return;
+    }
+    ifstream input_file(projectFile, ios::binary);
+    projectPortal portal;
+    if (input_file.is_open()) {
+        string serializedProjects((istreambuf_iterator<char>(input_file)), (istreambuf_iterator<char>()));
+        input_file.close();
+        portal.ParseFromString(serializedProjects);
+    }
+    for (int i = 0; i < portal.projects_size(); i++) {
+        if (portal.projects(i).id() == n) {
+            portal.mutable_projects(i)->Clear();
+            // updateUserProjectCount(-1);
+            found = true;
+            break;
+        }
+    }
+    ofstream output_file(projectFile, ios::binary);
+    output_file.write(portal.SerializeAsString().c_str(), portal.ByteSizeLong());
+    output_file.close();
+    if(!found){
+        cout << "Invalid notepad number";
+        return;
+    }
 }
 
 void editNotepad() {
