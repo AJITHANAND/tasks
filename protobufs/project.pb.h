@@ -47,12 +47,12 @@ extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table
 class Project;
 struct ProjectDefaultTypeInternal;
 extern ProjectDefaultTypeInternal _Project_default_instance_;
-class projectProtal;
-struct projectProtalDefaultTypeInternal;
-extern projectProtalDefaultTypeInternal _projectProtal_default_instance_;
+class projectPortal;
+struct projectPortalDefaultTypeInternal;
+extern projectPortalDefaultTypeInternal _projectPortal_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::Project* Arena::CreateMaybeMessage<::Project>(Arena*);
-template<> ::projectProtal* Arena::CreateMaybeMessage<::projectProtal>(Arena*);
+template<> ::projectPortal* Arena::CreateMaybeMessage<::projectPortal>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 
 // ===================================================================
@@ -178,24 +178,10 @@ class Project final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kIdFieldNumber = 1,
     kNameFieldNumber = 2,
     kUserIdFieldNumber = 3,
+    kIdFieldNumber = 1,
   };
-  // string id = 1;
-  void clear_id();
-  const std::string& id() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_id(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_id();
-  PROTOBUF_NODISCARD std::string* release_id();
-  void set_allocated_id(std::string* id);
-  private:
-  const std::string& _internal_id() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id(const std::string& value);
-  std::string* _internal_mutable_id();
-  public:
-
   // string name = 2;
   void clear_name();
   const std::string& name() const;
@@ -224,6 +210,15 @@ class Project final :
   std::string* _internal_mutable_userid();
   public:
 
+  // int32 id = 1;
+  void clear_id();
+  int32_t id() const;
+  void set_id(int32_t value);
+  private:
+  int32_t _internal_id() const;
+  void _internal_set_id(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Project)
  private:
   class _Internal;
@@ -232,9 +227,9 @@ class Project final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr id_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr userid_;
+    int32_t id_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -242,24 +237,24 @@ class Project final :
 };
 // -------------------------------------------------------------------
 
-class projectProtal final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:projectProtal) */ {
+class projectPortal final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:projectPortal) */ {
  public:
-  inline projectProtal() : projectProtal(nullptr) {}
-  ~projectProtal() override;
-  explicit PROTOBUF_CONSTEXPR projectProtal(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline projectPortal() : projectPortal(nullptr) {}
+  ~projectPortal() override;
+  explicit PROTOBUF_CONSTEXPR projectPortal(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  projectProtal(const projectProtal& from);
-  projectProtal(projectProtal&& from) noexcept
-    : projectProtal() {
+  projectPortal(const projectPortal& from);
+  projectPortal(projectPortal&& from) noexcept
+    : projectPortal() {
     *this = ::std::move(from);
   }
 
-  inline projectProtal& operator=(const projectProtal& from) {
+  inline projectPortal& operator=(const projectPortal& from) {
     CopyFrom(from);
     return *this;
   }
-  inline projectProtal& operator=(projectProtal&& from) noexcept {
+  inline projectPortal& operator=(projectPortal&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -282,20 +277,20 @@ class projectProtal final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const projectProtal& default_instance() {
+  static const projectPortal& default_instance() {
     return *internal_default_instance();
   }
-  static inline const projectProtal* internal_default_instance() {
-    return reinterpret_cast<const projectProtal*>(
-               &_projectProtal_default_instance_);
+  static inline const projectPortal* internal_default_instance() {
+    return reinterpret_cast<const projectPortal*>(
+               &_projectPortal_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(projectProtal& a, projectProtal& b) {
+  friend void swap(projectPortal& a, projectPortal& b) {
     a.Swap(&b);
   }
-  inline void Swap(projectProtal* other) {
+  inline void Swap(projectPortal* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -308,7 +303,7 @@ class projectProtal final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(projectProtal* other) {
+  void UnsafeArenaSwap(projectPortal* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -316,14 +311,14 @@ class projectProtal final :
 
   // implements Message ----------------------------------------------
 
-  projectProtal* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<projectProtal>(arena);
+  projectPortal* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<projectPortal>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const projectProtal& from);
+  void CopyFrom(const projectPortal& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const projectProtal& from) {
-    projectProtal::MergeImpl(*this, from);
+  void MergeFrom( const projectPortal& from) {
+    projectPortal::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
@@ -341,15 +336,15 @@ class projectProtal final :
   void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(projectProtal* other);
+  void InternalSwap(projectPortal* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "projectProtal";
+    return "projectPortal";
   }
   protected:
-  explicit projectProtal(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit projectPortal(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -383,7 +378,7 @@ class projectProtal final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Project >&
       projects() const;
 
-  // @@protoc_insertion_point(class_scope:projectProtal)
+  // @@protoc_insertion_point(class_scope:projectPortal)
  private:
   class _Internal;
 
@@ -408,54 +403,24 @@ class projectProtal final :
 #endif  // __GNUC__
 // Project
 
-// string id = 1;
+// int32 id = 1;
 inline void Project::clear_id() {
-  _impl_.id_.ClearToEmpty();
+  _impl_.id_ = 0;
 }
-inline const std::string& Project::id() const {
+inline int32_t Project::_internal_id() const {
+  return _impl_.id_;
+}
+inline int32_t Project::id() const {
   // @@protoc_insertion_point(field_get:Project.id)
   return _internal_id();
 }
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void Project::set_id(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+inline void Project::_internal_set_id(int32_t value) {
+  
+  _impl_.id_ = value;
+}
+inline void Project::set_id(int32_t value) {
+  _internal_set_id(value);
   // @@protoc_insertion_point(field_set:Project.id)
-}
-inline std::string* Project::mutable_id() {
-  std::string* _s = _internal_mutable_id();
-  // @@protoc_insertion_point(field_mutable:Project.id)
-  return _s;
-}
-inline const std::string& Project::_internal_id() const {
-  return _impl_.id_.Get();
-}
-inline void Project::_internal_set_id(const std::string& value) {
-  
-  _impl_.id_.Set(value, GetArenaForAllocation());
-}
-inline std::string* Project::_internal_mutable_id() {
-  
-  return _impl_.id_.Mutable(GetArenaForAllocation());
-}
-inline std::string* Project::release_id() {
-  // @@protoc_insertion_point(field_release:Project.id)
-  return _impl_.id_.Release();
-}
-inline void Project::set_allocated_id(std::string* id) {
-  if (id != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.id_.SetAllocated(id, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.id_.IsDefault()) {
-    _impl_.id_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Project.id)
 }
 
 // string name = 2;
@@ -560,45 +525,45 @@ inline void Project::set_allocated_userid(std::string* userid) {
 
 // -------------------------------------------------------------------
 
-// projectProtal
+// projectPortal
 
 // repeated .Project projects = 1;
-inline int projectProtal::_internal_projects_size() const {
+inline int projectPortal::_internal_projects_size() const {
   return _impl_.projects_.size();
 }
-inline int projectProtal::projects_size() const {
+inline int projectPortal::projects_size() const {
   return _internal_projects_size();
 }
-inline void projectProtal::clear_projects() {
+inline void projectPortal::clear_projects() {
   _impl_.projects_.Clear();
 }
-inline ::Project* projectProtal::mutable_projects(int index) {
-  // @@protoc_insertion_point(field_mutable:projectProtal.projects)
+inline ::Project* projectPortal::mutable_projects(int index) {
+  // @@protoc_insertion_point(field_mutable:projectPortal.projects)
   return _impl_.projects_.Mutable(index);
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Project >*
-projectProtal::mutable_projects() {
-  // @@protoc_insertion_point(field_mutable_list:projectProtal.projects)
+projectPortal::mutable_projects() {
+  // @@protoc_insertion_point(field_mutable_list:projectPortal.projects)
   return &_impl_.projects_;
 }
-inline const ::Project& projectProtal::_internal_projects(int index) const {
+inline const ::Project& projectPortal::_internal_projects(int index) const {
   return _impl_.projects_.Get(index);
 }
-inline const ::Project& projectProtal::projects(int index) const {
-  // @@protoc_insertion_point(field_get:projectProtal.projects)
+inline const ::Project& projectPortal::projects(int index) const {
+  // @@protoc_insertion_point(field_get:projectPortal.projects)
   return _internal_projects(index);
 }
-inline ::Project* projectProtal::_internal_add_projects() {
+inline ::Project* projectPortal::_internal_add_projects() {
   return _impl_.projects_.Add();
 }
-inline ::Project* projectProtal::add_projects() {
+inline ::Project* projectPortal::add_projects() {
   ::Project* _add = _internal_add_projects();
-  // @@protoc_insertion_point(field_add:projectProtal.projects)
+  // @@protoc_insertion_point(field_add:projectPortal.projects)
   return _add;
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Project >&
-projectProtal::projects() const {
-  // @@protoc_insertion_point(field_list:projectProtal.projects)
+projectPortal::projects() const {
+  // @@protoc_insertion_point(field_list:projectPortal.projects)
   return _impl_.projects_;
 }
 

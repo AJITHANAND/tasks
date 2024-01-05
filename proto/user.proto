@@ -5,4 +5,5 @@ message User{
     string address = 3;
     string email = 4;
     string psswd_hash =5;
+    int32 project_count = 6;
 }

@@ -179,6 +179,7 @@ class User final :
     kAddressFieldNumber = 3,
     kEmailFieldNumber = 4,
     kPsswdHashFieldNumber = 5,
+    kProjectCountFieldNumber = 6,
   };
   // string uid = 1;
   void clear_uid();
@@ -250,6 +251,15 @@ class User final :
   std::string* _internal_mutable_psswd_hash();
   public:
 
+  // int32 project_count = 6;
+  void clear_project_count();
+  int32_t project_count() const;
+  void set_project_count(int32_t value);
+  private:
+  int32_t _internal_project_count() const;
+  void _internal_set_project_count(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:User)
  private:
   class _Internal;
@@ -263,6 +273,7 @@ class User final :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr address_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr email_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr psswd_hash_;
+    int32_t project_count_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -527,6 +538,26 @@ inline void User::set_allocated_psswd_hash(std::string* psswd_hash) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:User.psswd_hash)
+}
+
+// int32 project_count = 6;
+inline void User::clear_project_count() {
+  _impl_.project_count_ = 0;
+}
+inline int32_t User::_internal_project_count() const {
+  return _impl_.project_count_;
+}
+inline int32_t User::project_count() const {
+  // @@protoc_insertion_point(field_get:User.project_count)
+  return _internal_project_count();
+}
+inline void User::_internal_set_project_count(int32_t value) {
+  
+  _impl_.project_count_ = value;
+}
+inline void User::set_project_count(int32_t value) {
+  _internal_set_project_count(value);
+  // @@protoc_insertion_point(field_set:User.project_count)
 }
 
 #ifdef __GNUC__

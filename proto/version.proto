@@ -13,11 +13,11 @@ message Operaion{
 message Version{
     string versionId =1;
     Operaion operation =2;
-    string projectId =3;
+    int32 projectId =3;
     string time =4;
     string versionNum =5;
 }
 
-message Versioning{
+message Versions{
     repeated Version versions =1;
 }

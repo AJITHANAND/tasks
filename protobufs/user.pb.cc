@@ -27,6 +27,7 @@ PROTOBUF_CONSTEXPR User::User(
   , /*decltype(_impl_.address_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.email_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.psswd_hash_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.project_count_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct UserDefaultTypeInternal {
   PROTOBUF_CONSTEXPR UserDefaultTypeInternal()
@@ -53,6 +54,7 @@ const uint32_t TableStruct_user_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(pro
   PROTOBUF_FIELD_OFFSET(::User, _impl_.address_),
   PROTOBUF_FIELD_OFFSET(::User, _impl_.email_),
   PROTOBUF_FIELD_OFFSET(::User, _impl_.psswd_hash_),
+  PROTOBUF_FIELD_OFFSET(::User, _impl_.project_count_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::User)},
@@ -63,13 +65,14 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_user_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\nuser.proto\"U\n\004User\022\013\n\003uid\030\001 \001(\t\022\014\n\004nam"
+  "\n\nuser.proto\"l\n\004User\022\013\n\003uid\030\001 \001(\t\022\014\n\004nam"
   "e\030\002 \001(\t\022\017\n\007address\030\003 \001(\t\022\r\n\005email\030\004 \001(\t\022"
-  "\022\n\npsswd_hash\030\005 \001(\tb\006proto3"
+  "\022\n\npsswd_hash\030\005 \001(\t\022\025\n\rproject_count\030\006 \001"
+  "(\005b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_user_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_user_2eproto = {
-    false, false, 107, descriptor_table_protodef_user_2eproto,
+    false, false, 130, descriptor_table_protodef_user_2eproto,
     "user.proto",
     &descriptor_table_user_2eproto_once, nullptr, 0, 1,
     schemas, file_default_instances, TableStruct_user_2eproto::offsets,
@@ -104,6 +107,7 @@ User::User(const User& from)
     , decltype(_impl_.address_){}
     , decltype(_impl_.email_){}
     , decltype(_impl_.psswd_hash_){}
+    , decltype(_impl_.project_count_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -147,6 +151,7 @@ User::User(const User& from)
     _this->_impl_.psswd_hash_.Set(from._internal_psswd_hash(), 
       _this->GetArenaForAllocation());
   }
+  _this->_impl_.project_count_ = from._impl_.project_count_;
   // @@protoc_insertion_point(copy_constructor:User)
 }
 
@@ -160,6 +165,7 @@ inline void User::SharedCtor(
     , decltype(_impl_.address_){}
     , decltype(_impl_.email_){}
     , decltype(_impl_.psswd_hash_){}
+    , decltype(_impl_.project_count_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
   _impl_.uid_.InitDefault();
@@ -217,6 +223,7 @@ void User::Clear() {
   _impl_.address_.ClearToEmpty();
   _impl_.email_.ClearToEmpty();
   _impl_.psswd_hash_.ClearToEmpty();
+  _impl_.project_count_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -273,6 +280,14 @@ const char* User::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "User.psswd_hash"));
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 project_count = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          _impl_.project_count_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -355,6 +370,12 @@ uint8_t* User::_InternalSerialize(
         5, this->_internal_psswd_hash(), target);
   }
 
+  // int32 project_count = 6;
+  if (this->_internal_project_count() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(6, this->_internal_project_count(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -406,6 +427,11 @@ size_t User::ByteSizeLong() const {
         this->_internal_psswd_hash());
   }
 
+  // int32 project_count = 6;
+  if (this->_internal_project_count() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_project_count());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -438,6 +464,9 @@ void User::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_
   }
   if (!from._internal_psswd_hash().empty()) {
     _this->_internal_set_psswd_hash(from._internal_psswd_hash());
+  }
+  if (from._internal_project_count() != 0) {
+    _this->_internal_set_project_count(from._internal_project_count());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -478,6 +507,7 @@ void User::InternalSwap(User* other) {
       &_impl_.psswd_hash_, lhs_arena,
       &other->_impl_.psswd_hash_, rhs_arena
   );
+  swap(_impl_.project_count_, other->_impl_.project_count_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata User::GetMetadata() const {
