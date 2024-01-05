@@ -51,19 +51,19 @@ struct VersionDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 VersionDefaultTypeInternal _Version_default_instance_;
-PROTOBUF_CONSTEXPR Versions::Versions(
+PROTOBUF_CONSTEXPR Versioning::Versioning(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.versions_)*/{}
   , /*decltype(_impl_._cached_size_)*/{}} {}
-struct VersionsDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR VersionsDefaultTypeInternal()
+struct VersioningDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR VersioningDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~VersionsDefaultTypeInternal() {}
+  ~VersioningDefaultTypeInternal() {}
   union {
-    Versions _instance;
+    Versioning _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 VersionsDefaultTypeInternal _Versions_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 VersioningDefaultTypeInternal _Versioning_default_instance_;
 static ::_pb::Metadata file_level_metadata_version_2eproto[3];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_version_2eproto[1];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_version_2eproto = nullptr;
@@ -89,23 +89,23 @@ const uint32_t TableStruct_version_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
   PROTOBUF_FIELD_OFFSET(::Version, _impl_.time_),
   PROTOBUF_FIELD_OFFSET(::Version, _impl_.versionnum_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::Versions, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::Versioning, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::Versions, _impl_.versions_),
+  PROTOBUF_FIELD_OFFSET(::Versioning, _impl_.versions_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::Operaion)},
   { 8, -1, -1, sizeof(::Version)},
-  { 19, -1, -1, sizeof(::Versions)},
+  { 19, -1, -1, sizeof(::Versioning)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
   &::_Operaion_default_instance_._instance,
   &::_Version_default_instance_._instance,
-  &::_Versions_default_instance_._instance,
+  &::_Versioning_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_version_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -115,12 +115,12 @@ const char descriptor_table_protodef_version_2eproto[] PROTOBUF_SECTION_VARIABLE
   "\020\001\022\n\n\006delete\020\002\"o\n\007Version\022\021\n\tversionId\030\001"
   " \001(\t\022\034\n\toperation\030\002 \001(\0132\t.Operaion\022\021\n\tpr"
   "ojectId\030\003 \001(\005\022\014\n\004time\030\004 \001(\t\022\022\n\nversionNu"
-  "m\030\005 \001(\t\"&\n\010Versions\022\032\n\010versions\030\001 \003(\0132\010."
-  "Versionb\006proto3"
+  "m\030\005 \001(\t\"(\n\nVersioning\022\032\n\010versions\030\001 \003(\0132"
+  "\010.Versionb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_version_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_version_2eproto = {
-    false, false, 295, descriptor_table_protodef_version_2eproto,
+    false, false, 297, descriptor_table_protodef_version_2eproto,
     "version.proto",
     &descriptor_table_version_2eproto_once, nullptr, 0, 3,
     schemas, file_default_instances, TableStruct_version_2eproto::offsets,
@@ -768,28 +768,28 @@ void Version::InternalSwap(Version* other) {
 
 // ===================================================================
 
-class Versions::_Internal {
+class Versioning::_Internal {
  public:
 };
 
-Versions::Versions(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+Versioning::Versioning(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:Versions)
+  // @@protoc_insertion_point(arena_constructor:Versioning)
 }
-Versions::Versions(const Versions& from)
+Versioning::Versioning(const Versioning& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Versions* const _this = this; (void)_this;
+  Versioning* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.versions_){from._impl_.versions_}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:Versions)
+  // @@protoc_insertion_point(copy_constructor:Versioning)
 }
 
-inline void Versions::SharedCtor(
+inline void Versioning::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
@@ -799,8 +799,8 @@ inline void Versions::SharedCtor(
   };
 }
 
-Versions::~Versions() {
-  // @@protoc_insertion_point(destructor:Versions)
+Versioning::~Versioning() {
+  // @@protoc_insertion_point(destructor:Versioning)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -808,17 +808,17 @@ Versions::~Versions() {
   SharedDtor();
 }
 
-inline void Versions::SharedDtor() {
+inline void Versioning::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.versions_.~RepeatedPtrField();
 }
 
-void Versions::SetCachedSize(int size) const {
+void Versioning::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void Versions::Clear() {
-// @@protoc_insertion_point(message_clear_start:Versions)
+void Versioning::Clear() {
+// @@protoc_insertion_point(message_clear_start:Versioning)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -827,7 +827,7 @@ void Versions::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* Versions::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* Versioning::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
@@ -869,9 +869,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* Versions::_InternalSerialize(
+uint8_t* Versioning::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Versions)
+  // @@protoc_insertion_point(serialize_to_array_start:Versioning)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -887,12 +887,12 @@ uint8_t* Versions::_InternalSerialize(
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:Versions)
+  // @@protoc_insertion_point(serialize_to_array_end:Versioning)
   return target;
 }
 
-size_t Versions::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Versions)
+size_t Versioning::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Versioning)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
@@ -909,17 +909,17 @@ size_t Versions::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Versions::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Versioning::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    Versions::MergeImpl
+    Versioning::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Versions::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Versioning::GetClassData() const { return &_class_data_; }
 
 
-void Versions::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Versions*>(&to_msg);
-  auto& from = static_cast<const Versions&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Versions)
+void Versioning::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<Versioning*>(&to_msg);
+  auto& from = static_cast<const Versioning&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Versioning)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -928,24 +928,24 @@ void Versions::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTO
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void Versions::CopyFrom(const Versions& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Versions)
+void Versioning::CopyFrom(const Versioning& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Versioning)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool Versions::IsInitialized() const {
+bool Versioning::IsInitialized() const {
   return true;
 }
 
-void Versions::InternalSwap(Versions* other) {
+void Versioning::InternalSwap(Versioning* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.versions_.InternalSwap(&other->_impl_.versions_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata Versions::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata Versioning::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_version_2eproto_getter, &descriptor_table_version_2eproto_once,
       file_level_metadata_version_2eproto[2]);
@@ -961,9 +961,9 @@ template<> PROTOBUF_NOINLINE ::Version*
 Arena::CreateMaybeMessage< ::Version >(Arena* arena) {
   return Arena::CreateMessageInternal< ::Version >(arena);
 }
-template<> PROTOBUF_NOINLINE ::Versions*
-Arena::CreateMaybeMessage< ::Versions >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::Versions >(arena);
+template<> PROTOBUF_NOINLINE ::Versioning*
+Arena::CreateMaybeMessage< ::Versioning >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Versioning >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

@@ -18,6 +18,6 @@ message Version{
     string versionNum =5;
 }
 
-message Versions{
+message Versioning{
     repeated Version versions =1;
 }
