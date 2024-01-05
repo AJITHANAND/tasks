@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+
+
+
+
+message Version{
+    string versionId =1;
+    string content =2;
+    string projectId =3;
+    string time =4;
+    string versionNum =5;
+}
+
+message Versioning{
+    repeated Version versions =1;
+}

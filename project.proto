@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+message Project{
+    string id = 1;
+    string name =2;
+    string userId =3;
+}
+
+message projectProtal{
+    repeated Project projects =1;
+}
