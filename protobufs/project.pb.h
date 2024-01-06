@@ -181,6 +181,8 @@ class Project final :
     kNameFieldNumber = 2,
     kUserIdFieldNumber = 3,
     kIdFieldNumber = 1,
+    kCurrentVersionFieldNumber = 4,
+    kTotalVersionFieldNumber = 5,
   };
   // string name = 2;
   void clear_name();
@@ -219,6 +221,24 @@ class Project final :
   void _internal_set_id(int32_t value);
   public:
 
+  // int32 currentVersion = 4;
+  void clear_currentversion();
+  int32_t currentversion() const;
+  void set_currentversion(int32_t value);
+  private:
+  int32_t _internal_currentversion() const;
+  void _internal_set_currentversion(int32_t value);
+  public:
+
+  // int32 totalVersion = 5;
+  void clear_totalversion();
+  int32_t totalversion() const;
+  void set_totalversion(int32_t value);
+  private:
+  int32_t _internal_totalversion() const;
+  void _internal_set_totalversion(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Project)
  private:
   class _Internal;
@@ -230,6 +250,8 @@ class Project final :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr userid_;
     int32_t id_;
+    int32_t currentversion_;
+    int32_t totalversion_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -521,6 +543,46 @@ inline void Project::set_allocated_userid(std::string* userid) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:Project.userId)
+}
+
+// int32 currentVersion = 4;
+inline void Project::clear_currentversion() {
+  _impl_.currentversion_ = 0;
+}
+inline int32_t Project::_internal_currentversion() const {
+  return _impl_.currentversion_;
+}
+inline int32_t Project::currentversion() const {
+  // @@protoc_insertion_point(field_get:Project.currentVersion)
+  return _internal_currentversion();
+}
+inline void Project::_internal_set_currentversion(int32_t value) {
+  
+  _impl_.currentversion_ = value;
+}
+inline void Project::set_currentversion(int32_t value) {
+  _internal_set_currentversion(value);
+  // @@protoc_insertion_point(field_set:Project.currentVersion)
+}
+
+// int32 totalVersion = 5;
+inline void Project::clear_totalversion() {
+  _impl_.totalversion_ = 0;
+}
+inline int32_t Project::_internal_totalversion() const {
+  return _impl_.totalversion_;
+}
+inline int32_t Project::totalversion() const {
+  // @@protoc_insertion_point(field_get:Project.totalVersion)
+  return _internal_totalversion();
+}
+inline void Project::_internal_set_totalversion(int32_t value) {
+  
+  _impl_.totalversion_ = value;
+}
+inline void Project::set_totalversion(int32_t value) {
+  _internal_set_totalversion(value);
+  // @@protoc_insertion_point(field_set:Project.totalVersion)
 }
 
 // -------------------------------------------------------------------
