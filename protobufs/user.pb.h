@@ -47,8 +47,12 @@ extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table
 class User;
 struct UserDefaultTypeInternal;
 extern UserDefaultTypeInternal _User_default_instance_;
+class UserPortal;
+struct UserPortalDefaultTypeInternal;
+extern UserPortalDefaultTypeInternal _UserPortal_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::User* Arena::CreateMaybeMessage<::User>(Arena*);
+template<> ::UserPortal* Arena::CreateMaybeMessage<::UserPortal>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 
 // ===================================================================
@@ -274,6 +278,163 @@ class User final :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr email_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr psswd_hash_;
     int32_t project_count_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_user_2eproto;
+};
+// -------------------------------------------------------------------
+
+class UserPortal final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:UserPortal) */ {
+ public:
+  inline UserPortal() : UserPortal(nullptr) {}
+  ~UserPortal() override;
+  explicit PROTOBUF_CONSTEXPR UserPortal(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UserPortal(const UserPortal& from);
+  UserPortal(UserPortal&& from) noexcept
+    : UserPortal() {
+    *this = ::std::move(from);
+  }
+
+  inline UserPortal& operator=(const UserPortal& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserPortal& operator=(UserPortal&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UserPortal& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UserPortal* internal_default_instance() {
+    return reinterpret_cast<const UserPortal*>(
+               &_UserPortal_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(UserPortal& a, UserPortal& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UserPortal* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserPortal* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UserPortal* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UserPortal>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UserPortal& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const UserPortal& from) {
+    UserPortal::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UserPortal* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "UserPortal";
+  }
+  protected:
+  explicit UserPortal(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUsersFieldNumber = 1,
+  };
+  // repeated .User users = 1;
+  int users_size() const;
+  private:
+  int _internal_users_size() const;
+  public:
+  void clear_users();
+  ::User* mutable_users(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::User >*
+      mutable_users();
+  private:
+  const ::User& _internal_users(int index) const;
+  ::User* _internal_add_users();
+  public:
+  const ::User& users(int index) const;
+  ::User* add_users();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::User >&
+      users() const;
+
+  // @@protoc_insertion_point(class_scope:UserPortal)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::User > users_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -560,9 +721,55 @@ inline void User::set_project_count(int32_t value) {
   // @@protoc_insertion_point(field_set:User.project_count)
 }
 
+// -------------------------------------------------------------------
+
+// UserPortal
+
+// repeated .User users = 1;
+inline int UserPortal::_internal_users_size() const {
+  return _impl_.users_.size();
+}
+inline int UserPortal::users_size() const {
+  return _internal_users_size();
+}
+inline void UserPortal::clear_users() {
+  _impl_.users_.Clear();
+}
+inline ::User* UserPortal::mutable_users(int index) {
+  // @@protoc_insertion_point(field_mutable:UserPortal.users)
+  return _impl_.users_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::User >*
+UserPortal::mutable_users() {
+  // @@protoc_insertion_point(field_mutable_list:UserPortal.users)
+  return &_impl_.users_;
+}
+inline const ::User& UserPortal::_internal_users(int index) const {
+  return _impl_.users_.Get(index);
+}
+inline const ::User& UserPortal::users(int index) const {
+  // @@protoc_insertion_point(field_get:UserPortal.users)
+  return _internal_users(index);
+}
+inline ::User* UserPortal::_internal_add_users() {
+  return _impl_.users_.Add();
+}
+inline ::User* UserPortal::add_users() {
+  ::User* _add = _internal_add_users();
+  // @@protoc_insertion_point(field_add:UserPortal.users)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::User >&
+UserPortal::users() const {
+  // @@protoc_insertion_point(field_list:UserPortal.users)
+  return _impl_.users_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 

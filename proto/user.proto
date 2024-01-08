@@ -7,3 +7,7 @@ message User{
     string psswd_hash =5;
     int32 project_count = 6;
 }
+
+message UserPortal{
+    repeated User users = 1;
+}
