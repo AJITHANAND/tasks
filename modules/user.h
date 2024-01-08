@@ -15,7 +15,7 @@ class Users{
     int total_accounts =-1;
 
 
-    string hash_password(const char *str) {
+    string hashPassword(const char *str) {
         unsigned int hash = 5381;
         int c;
 
@@ -29,20 +29,15 @@ class Users{
         //todo: implement account existence
         return true;
     }
-
-    bool is_logged(){
-        return logged_in;
-    }
-
-    string fetch_users_data(){
+    string fetchUserData(){
         ifstream file(users_file,ios::binary);
         string serialized_users((istreambuf_iterator<char>(file)), (istreambuf_iterator<char>()));
         return serialized_users;
     }
 
-    int total_account(){
+    int totalAccount(){
         //imp
-        users.ParseFromString(fetch_users_data());
+        users.ParseFromString(fetchUserData());
         return users.users_size();
     }
 
@@ -54,13 +49,13 @@ class Users{
         bool Login(string username, string password){
             ifstream in_file(users_file,ios::binary);
             if(!in_file.is_open())return false;
-            users.ParseFromString(fetch_users_data());
+            users.ParseFromString(fetchUserData());
             total_accounts = users.users_size();
             // cout<<users.ByteSizeLong()<<endl;
             // cout<<"total size"<<users.users_size()<<endl;
             for(int i =0 ;i<users.users_size() ;i++){
                 cout<<users.users(i).name()<<endl;
-                if(users.users(i).email() == username && users.users(i).psswd_hash() == hash_password(password.c_str())){
+                if(users.users(i).email() == username && users.users(i).psswd_hash() == hashPassword(password.c_str())){
                     user = users.users(i);
                     logged_in = true;
                     return true;
@@ -74,12 +69,12 @@ class Users{
             
             // Register the user
             if(total_accounts<0){
-                total_account();
+                totalAccount();
             }
             total_accounts++;
             user.set_uid(total_accounts);
             user.set_email(email);
-            user.set_psswd_hash(hash_password(password));
+            user.set_psswd_hash(hashPassword(password));
             user.set_name(name);
             user.set_address(location);
             user.set_project_count(0);
@@ -97,7 +92,7 @@ class Users{
             user = User();
             return true;
         }
-        string get_name(){
+        string getName(){
             if(!logged_in) return "not logged in";
             return user.name();
         }
