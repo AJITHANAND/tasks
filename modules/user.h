@@ -35,7 +35,7 @@ class Users{
     }
 
     string fetch_users_data(){
-        ifstream file;
+        ifstream file(users_file,ios::binary);
         string serialized_users((istreambuf_iterator<char>(file)), (istreambuf_iterator<char>()));
         return serialized_users;
     }
@@ -55,9 +55,9 @@ class Users{
             ifstream in_file(users_file,ios::binary);
             if(!in_file.is_open())return false;
             users.ParseFromString(fetch_users_data());
-            in_file.close();
             total_accounts = users.users_size();
-            cout<<"total size"<<users.users_size()<<endl;
+            // cout<<users.ByteSizeLong()<<endl;
+            // cout<<"total size"<<users.users_size()<<endl;
             for(int i =0 ;i<users.users_size() ;i++){
                 cout<<users.users(i).name()<<endl;
                 if(users.users(i).email() == username && users.users(i).psswd_hash() == hash_password(password.c_str())){
@@ -66,7 +66,7 @@ class Users{
                     return true;
                 }
             }
-            cout<<"not found"<<endl;
+            // cout<<"not found"<<endl;
             return false;
         }
         bool registerUser(const char* name, const char* location, const char* email, const char* password) {
@@ -86,7 +86,6 @@ class Users{
             users.add_users()->CopyFrom(user);
             // save 
             ofstream opf(users_file, ios::binary);
-
             opf.write(users.SerializeAsString().c_str(),users.ByteSizeLong());
             opf.close();
             cout << "Registration Successful" << endl;
