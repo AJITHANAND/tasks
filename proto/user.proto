@@ -9,5 +9,5 @@ message User{
 }
 
 message UserPortal{
-    repeated User users = 1;
+    repeated User user = 1;
 }

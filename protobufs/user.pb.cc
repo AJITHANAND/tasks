@@ -40,7 +40,7 @@ struct UserDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserDefaultTypeInternal _User_default_instance_;
 PROTOBUF_CONSTEXPR UserPortal::UserPortal(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.users_)*/{}
+    /*decltype(_impl_.user_)*/{}
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct UserPortalDefaultTypeInternal {
   PROTOBUF_CONSTEXPR UserPortalDefaultTypeInternal()
@@ -74,7 +74,7 @@ const uint32_t TableStruct_user_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(pro
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::UserPortal, _impl_.users_),
+  PROTOBUF_FIELD_OFFSET(::UserPortal, _impl_.user_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::User)},
@@ -90,12 +90,12 @@ const char descriptor_table_protodef_user_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "\n\nuser.proto\"l\n\004User\022\013\n\003uid\030\001 \001(\005\022\014\n\004nam"
   "e\030\002 \001(\t\022\017\n\007address\030\003 \001(\t\022\r\n\005email\030\004 \001(\t\022"
   "\022\n\npsswd_hash\030\005 \001(\t\022\025\n\rproject_count\030\006 \001"
-  "(\005\"\"\n\nUserPortal\022\024\n\005users\030\001 \003(\0132\005.Userb\006"
-  "proto3"
+  "(\005\"!\n\nUserPortal\022\023\n\004user\030\001 \003(\0132\005.Userb\006p"
+  "roto3"
   ;
 static ::_pbi::once_flag descriptor_table_user_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_user_2eproto = {
-    false, false, 166, descriptor_table_protodef_user_2eproto,
+    false, false, 165, descriptor_table_protodef_user_2eproto,
     "user.proto",
     &descriptor_table_user_2eproto_once, nullptr, 0, 2,
     schemas, file_default_instances, TableStruct_user_2eproto::offsets,
@@ -538,7 +538,7 @@ UserPortal::UserPortal(const UserPortal& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   UserPortal* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.users_){from._impl_.users_}
+      decltype(_impl_.user_){from._impl_.user_}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -550,7 +550,7 @@ inline void UserPortal::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.users_){arena}
+      decltype(_impl_.user_){arena}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -566,7 +566,7 @@ UserPortal::~UserPortal() {
 
 inline void UserPortal::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.users_.~RepeatedPtrField();
+  _impl_.user_.~RepeatedPtrField();
 }
 
 void UserPortal::SetCachedSize(int size) const {
@@ -579,7 +579,7 @@ void UserPortal::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.users_.Clear();
+  _impl_.user_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -589,13 +589,13 @@ const char* UserPortal::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // repeated .User users = 1;
+      // repeated .User user = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_users(), ptr);
+            ptr = ctx->ParseMessage(_internal_add_user(), ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
@@ -631,10 +631,10 @@ uint8_t* UserPortal::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .User users = 1;
+  // repeated .User user = 1;
   for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_users_size()); i < n; i++) {
-    const auto& repfield = this->_internal_users(i);
+      n = static_cast<unsigned>(this->_internal_user_size()); i < n; i++) {
+    const auto& repfield = this->_internal_user(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
         InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
@@ -655,9 +655,9 @@ size_t UserPortal::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .User users = 1;
-  total_size += 1UL * this->_internal_users_size();
-  for (const auto& msg : this->_impl_.users_) {
+  // repeated .User user = 1;
+  total_size += 1UL * this->_internal_user_size();
+  for (const auto& msg : this->_impl_.user_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -680,7 +680,7 @@ void UserPortal::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PRO
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.users_.MergeFrom(from._impl_.users_);
+  _this->_impl_.user_.MergeFrom(from._impl_.user_);
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -698,7 +698,7 @@ bool UserPortal::IsInitialized() const {
 void UserPortal::InternalSwap(UserPortal* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.users_.InternalSwap(&other->_impl_.users_);
+  _impl_.user_.InternalSwap(&other->_impl_.user_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata UserPortal::GetMetadata() const {

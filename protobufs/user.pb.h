@@ -401,25 +401,25 @@ class UserPortal final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kUsersFieldNumber = 1,
+    kUserFieldNumber = 1,
   };
-  // repeated .User users = 1;
-  int users_size() const;
+  // repeated .User user = 1;
+  int user_size() const;
   private:
-  int _internal_users_size() const;
+  int _internal_user_size() const;
   public:
-  void clear_users();
-  ::User* mutable_users(int index);
+  void clear_user();
+  ::User* mutable_user(int index);
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::User >*
-      mutable_users();
+      mutable_user();
   private:
-  const ::User& _internal_users(int index) const;
-  ::User* _internal_add_users();
+  const ::User& _internal_user(int index) const;
+  ::User* _internal_add_user();
   public:
-  const ::User& users(int index) const;
-  ::User* add_users();
+  const ::User& user(int index) const;
+  ::User* add_user();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::User >&
-      users() const;
+      user() const;
 
   // @@protoc_insertion_point(class_scope:UserPortal)
  private:
@@ -429,7 +429,7 @@ class UserPortal final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::User > users_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::User > user_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -690,44 +690,44 @@ inline void User::set_project_count(int32_t value) {
 
 // UserPortal
 
-// repeated .User users = 1;
-inline int UserPortal::_internal_users_size() const {
-  return _impl_.users_.size();
+// repeated .User user = 1;
+inline int UserPortal::_internal_user_size() const {
+  return _impl_.user_.size();
 }
-inline int UserPortal::users_size() const {
-  return _internal_users_size();
+inline int UserPortal::user_size() const {
+  return _internal_user_size();
 }
-inline void UserPortal::clear_users() {
-  _impl_.users_.Clear();
+inline void UserPortal::clear_user() {
+  _impl_.user_.Clear();
 }
-inline ::User* UserPortal::mutable_users(int index) {
-  // @@protoc_insertion_point(field_mutable:UserPortal.users)
-  return _impl_.users_.Mutable(index);
+inline ::User* UserPortal::mutable_user(int index) {
+  // @@protoc_insertion_point(field_mutable:UserPortal.user)
+  return _impl_.user_.Mutable(index);
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::User >*
-UserPortal::mutable_users() {
-  // @@protoc_insertion_point(field_mutable_list:UserPortal.users)
-  return &_impl_.users_;
+UserPortal::mutable_user() {
+  // @@protoc_insertion_point(field_mutable_list:UserPortal.user)
+  return &_impl_.user_;
 }
-inline const ::User& UserPortal::_internal_users(int index) const {
-  return _impl_.users_.Get(index);
+inline const ::User& UserPortal::_internal_user(int index) const {
+  return _impl_.user_.Get(index);
 }
-inline const ::User& UserPortal::users(int index) const {
-  // @@protoc_insertion_point(field_get:UserPortal.users)
-  return _internal_users(index);
+inline const ::User& UserPortal::user(int index) const {
+  // @@protoc_insertion_point(field_get:UserPortal.user)
+  return _internal_user(index);
 }
-inline ::User* UserPortal::_internal_add_users() {
-  return _impl_.users_.Add();
+inline ::User* UserPortal::_internal_add_user() {
+  return _impl_.user_.Add();
 }
-inline ::User* UserPortal::add_users() {
-  ::User* _add = _internal_add_users();
-  // @@protoc_insertion_point(field_add:UserPortal.users)
+inline ::User* UserPortal::add_user() {
+  ::User* _add = _internal_add_user();
+  // @@protoc_insertion_point(field_add:UserPortal.user)
   return _add;
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::User >&
-UserPortal::users() const {
-  // @@protoc_insertion_point(field_list:UserPortal.users)
-  return _impl_.users_;
+UserPortal::user() const {
+  // @@protoc_insertion_point(field_list:UserPortal.user)
+  return _impl_.user_;
 }
 
 #ifdef __GNUC__

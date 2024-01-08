@@ -38,7 +38,7 @@ class Users{
     int totalAccount(){
         //imp
         users.ParseFromString(fetchUserData());
-        return users.users_size();
+        return users.user_size();
     }
 
     public:
@@ -50,13 +50,13 @@ class Users{
             ifstream in_file(users_file,ios::binary);
             if(!in_file.is_open())return false;
             users.ParseFromString(fetchUserData());
-            total_accounts = users.users_size();
+            total_accounts = users.user_size();
             // cout<<users.ByteSizeLong()<<endl;
-            // cout<<"total size"<<users.users_size()<<endl;
-            for(int i =0 ;i<users.users_size() ;i++){
-                cout<<users.users(i).name()<<endl;
-                if(users.users(i).email() == username && users.users(i).psswd_hash() == hashPassword(password.c_str())){
-                    user = users.users(i);
+            // cout<<"total size"<<users.user_size()<<endl;
+            for(int i =0 ;i<users.user_size() ;i++){
+                cout<<users.user(i).name()<<endl;
+                if(users.user(i).email() == username && users.users(i).psswd_hash() == hashPassword(password.c_str())){
+                    user = users.user(i);
                     logged_in = true;
                     return true;
                 }
@@ -78,7 +78,7 @@ class Users{
             user.set_name(name);
             user.set_address(location);
             user.set_project_count(0);
-            users.add_users()->CopyFrom(user);
+            users.add_user()->CopyFrom(user);
             // save 
             ofstream opf(users_file, ios::binary);
             opf.write(users.SerializeAsString().c_str(),users.ByteSizeLong());
@@ -95,6 +95,21 @@ class Users{
         string getName(){
             if(!logged_in) return "not logged in";
             return user.name();
+        }
+        int getId(){
+            if(!logged_in) return -1;
+            return user.uid();
+        }
+        int getProjectCount(){
+            if(!logged_in) return -1;
+            return user.project_count();
+        }
+        bool updateProjectCount(){
+            if(!logged_in) return false;
+            for(int i = 0; i < users.user_size(); i++){
+                if (users.)
+            }
+            return true;
         }
 };
 
