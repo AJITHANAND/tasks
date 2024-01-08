@@ -55,7 +55,7 @@ class Users{
             // cout<<"total size"<<users.user_size()<<endl;
             for(int i =0 ;i<users.user_size() ;i++){
                 cout<<users.user(i).name()<<endl;
-                if(users.user(i).email() == username && users.users(i).psswd_hash() == hashPassword(password.c_str())){
+                if(users.user(i).email() == username && users.user(i).psswd_hash() == hashPassword(password.c_str())){
                     user = users.user(i);
                     logged_in = true;
                     return true;
@@ -107,9 +107,15 @@ class Users{
         bool updateProjectCount(){
             if(!logged_in) return false;
             for(int i = 0; i < users.user_size(); i++){
-                if (users.)
+                if (users.user(i).email() == user.email()){
+                    users.mutable_user(i)->set_project_count(users.user(i).project_count()+1);
+                    ofstream opf(users_file, ios::binary);
+                    opf.write(users.SerializeAsString().c_str(),users.ByteSizeLong());
+                    opf.close();
+                    return true;
+                }
             }
-            return true;
+            return false;
         }
 };
 
