@@ -178,27 +178,13 @@ class User final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kUidFieldNumber = 1,
     kNameFieldNumber = 2,
     kAddressFieldNumber = 3,
     kEmailFieldNumber = 4,
     kPsswdHashFieldNumber = 5,
+    kUidFieldNumber = 1,
     kProjectCountFieldNumber = 6,
   };
-  // string uid = 1;
-  void clear_uid();
-  const std::string& uid() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_uid(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_uid();
-  PROTOBUF_NODISCARD std::string* release_uid();
-  void set_allocated_uid(std::string* uid);
-  private:
-  const std::string& _internal_uid() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_uid(const std::string& value);
-  std::string* _internal_mutable_uid();
-  public:
-
   // string name = 2;
   void clear_name();
   const std::string& name() const;
@@ -255,6 +241,15 @@ class User final :
   std::string* _internal_mutable_psswd_hash();
   public:
 
+  // int32 uid = 1;
+  void clear_uid();
+  int32_t uid() const;
+  void set_uid(int32_t value);
+  private:
+  int32_t _internal_uid() const;
+  void _internal_set_uid(int32_t value);
+  public:
+
   // int32 project_count = 6;
   void clear_project_count();
   int32_t project_count() const;
@@ -272,11 +267,11 @@ class User final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr uid_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr address_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr email_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr psswd_hash_;
+    int32_t uid_;
     int32_t project_count_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -451,54 +446,24 @@ class UserPortal final :
 #endif  // __GNUC__
 // User
 
-// string uid = 1;
+// int32 uid = 1;
 inline void User::clear_uid() {
-  _impl_.uid_.ClearToEmpty();
+  _impl_.uid_ = 0;
 }
-inline const std::string& User::uid() const {
+inline int32_t User::_internal_uid() const {
+  return _impl_.uid_;
+}
+inline int32_t User::uid() const {
   // @@protoc_insertion_point(field_get:User.uid)
   return _internal_uid();
 }
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void User::set_uid(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.uid_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+inline void User::_internal_set_uid(int32_t value) {
+  
+  _impl_.uid_ = value;
+}
+inline void User::set_uid(int32_t value) {
+  _internal_set_uid(value);
   // @@protoc_insertion_point(field_set:User.uid)
-}
-inline std::string* User::mutable_uid() {
-  std::string* _s = _internal_mutable_uid();
-  // @@protoc_insertion_point(field_mutable:User.uid)
-  return _s;
-}
-inline const std::string& User::_internal_uid() const {
-  return _impl_.uid_.Get();
-}
-inline void User::_internal_set_uid(const std::string& value) {
-  
-  _impl_.uid_.Set(value, GetArenaForAllocation());
-}
-inline std::string* User::_internal_mutable_uid() {
-  
-  return _impl_.uid_.Mutable(GetArenaForAllocation());
-}
-inline std::string* User::release_uid() {
-  // @@protoc_insertion_point(field_release:User.uid)
-  return _impl_.uid_.Release();
-}
-inline void User::set_allocated_uid(std::string* uid) {
-  if (uid != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.uid_.SetAllocated(uid, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.uid_.IsDefault()) {
-    _impl_.uid_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:User.uid)
 }
 
 // string name = 2;

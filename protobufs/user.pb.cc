@@ -22,11 +22,11 @@ namespace _pbi = _pb::internal;
 
 PROTOBUF_CONSTEXPR User::User(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.uid_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.address_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.email_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.psswd_hash_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.uid_)*/0
   , /*decltype(_impl_.project_count_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct UserDefaultTypeInternal {
@@ -87,7 +87,7 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_user_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\nuser.proto\"l\n\004User\022\013\n\003uid\030\001 \001(\t\022\014\n\004nam"
+  "\n\nuser.proto\"l\n\004User\022\013\n\003uid\030\001 \001(\005\022\014\n\004nam"
   "e\030\002 \001(\t\022\017\n\007address\030\003 \001(\t\022\r\n\005email\030\004 \001(\t\022"
   "\022\n\npsswd_hash\030\005 \001(\t\022\025\n\rproject_count\030\006 \001"
   "(\005\"\"\n\nUserPortal\022\024\n\005users\030\001 \003(\0132\005.Userb\006"
@@ -125,23 +125,15 @@ User::User(const User& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   User* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.uid_){}
-    , decltype(_impl_.name_){}
+      decltype(_impl_.name_){}
     , decltype(_impl_.address_){}
     , decltype(_impl_.email_){}
     , decltype(_impl_.psswd_hash_){}
+    , decltype(_impl_.uid_){}
     , decltype(_impl_.project_count_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.uid_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.uid_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_uid().empty()) {
-    _this->_impl_.uid_.Set(from._internal_uid(), 
-      _this->GetArenaForAllocation());
-  }
   _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     _impl_.name_.Set("", GetArenaForAllocation());
@@ -174,7 +166,9 @@ User::User(const User& from)
     _this->_impl_.psswd_hash_.Set(from._internal_psswd_hash(), 
       _this->GetArenaForAllocation());
   }
-  _this->_impl_.project_count_ = from._impl_.project_count_;
+  ::memcpy(&_impl_.uid_, &from._impl_.uid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.project_count_) -
+    reinterpret_cast<char*>(&_impl_.uid_)) + sizeof(_impl_.project_count_));
   // @@protoc_insertion_point(copy_constructor:User)
 }
 
@@ -183,18 +177,14 @@ inline void User::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.uid_){}
-    , decltype(_impl_.name_){}
+      decltype(_impl_.name_){}
     , decltype(_impl_.address_){}
     , decltype(_impl_.email_){}
     , decltype(_impl_.psswd_hash_){}
+    , decltype(_impl_.uid_){0}
     , decltype(_impl_.project_count_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
-  _impl_.uid_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.uid_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     _impl_.name_.Set("", GetArenaForAllocation());
@@ -224,7 +214,6 @@ User::~User() {
 
 inline void User::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.uid_.Destroy();
   _impl_.name_.Destroy();
   _impl_.address_.Destroy();
   _impl_.email_.Destroy();
@@ -241,12 +230,13 @@ void User::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.uid_.ClearToEmpty();
   _impl_.name_.ClearToEmpty();
   _impl_.address_.ClearToEmpty();
   _impl_.email_.ClearToEmpty();
   _impl_.psswd_hash_.ClearToEmpty();
-  _impl_.project_count_ = 0;
+  ::memset(&_impl_.uid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.project_count_) -
+      reinterpret_cast<char*>(&_impl_.uid_)) + sizeof(_impl_.project_count_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -256,13 +246,11 @@ const char* User::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // string uid = 1;
+      // int32 uid = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_uid();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.uid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "User.uid"));
         } else
           goto handle_unusual;
         continue;
@@ -343,14 +331,10 @@ uint8_t* User::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string uid = 1;
-  if (!this->_internal_uid().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_uid().data(), static_cast<int>(this->_internal_uid().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "User.uid");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_uid(), target);
+  // int32 uid = 1;
+  if (this->_internal_uid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_uid(), target);
   }
 
   // string name = 2;
@@ -415,13 +399,6 @@ size_t User::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string uid = 1;
-  if (!this->_internal_uid().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_uid());
-  }
-
   // string name = 2;
   if (!this->_internal_name().empty()) {
     total_size += 1 +
@@ -450,6 +427,11 @@ size_t User::ByteSizeLong() const {
         this->_internal_psswd_hash());
   }
 
+  // int32 uid = 1;
+  if (this->_internal_uid() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_uid());
+  }
+
   // int32 project_count = 6;
   if (this->_internal_project_count() != 0) {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_project_count());
@@ -473,9 +455,6 @@ void User::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_uid().empty()) {
-    _this->_internal_set_uid(from._internal_uid());
-  }
   if (!from._internal_name().empty()) {
     _this->_internal_set_name(from._internal_name());
   }
@@ -487,6 +466,9 @@ void User::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_
   }
   if (!from._internal_psswd_hash().empty()) {
     _this->_internal_set_psswd_hash(from._internal_psswd_hash());
+  }
+  if (from._internal_uid() != 0) {
+    _this->_internal_set_uid(from._internal_uid());
   }
   if (from._internal_project_count() != 0) {
     _this->_internal_set_project_count(from._internal_project_count());
@@ -511,10 +493,6 @@ void User::InternalSwap(User* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.uid_, lhs_arena,
-      &other->_impl_.uid_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &_impl_.name_, lhs_arena,
       &other->_impl_.name_, rhs_arena
   );
@@ -530,7 +508,12 @@ void User::InternalSwap(User* other) {
       &_impl_.psswd_hash_, lhs_arena,
       &other->_impl_.psswd_hash_, rhs_arena
   );
-  swap(_impl_.project_count_, other->_impl_.project_count_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(User, _impl_.project_count_)
+      + sizeof(User::_impl_.project_count_)
+      - PROTOBUF_FIELD_OFFSET(User, _impl_.uid_)>(
+          reinterpret_cast<char*>(&_impl_.uid_),
+          reinterpret_cast<char*>(&other->_impl_.uid_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata User::GetMetadata() const {
