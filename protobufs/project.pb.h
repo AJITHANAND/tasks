@@ -179,8 +179,8 @@ class Project final :
 
   enum : int {
     kNameFieldNumber = 2,
-    kUserIdFieldNumber = 3,
     kIdFieldNumber = 1,
+    kUserIdFieldNumber = 3,
     kCurrentVersionFieldNumber = 4,
     kTotalVersionFieldNumber = 5,
   };
@@ -198,20 +198,6 @@ class Project final :
   std::string* _internal_mutable_name();
   public:
 
-  // string userId = 3;
-  void clear_userid();
-  const std::string& userid() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_userid(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_userid();
-  PROTOBUF_NODISCARD std::string* release_userid();
-  void set_allocated_userid(std::string* userid);
-  private:
-  const std::string& _internal_userid() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_userid(const std::string& value);
-  std::string* _internal_mutable_userid();
-  public:
-
   // int32 id = 1;
   void clear_id();
   int32_t id() const;
@@ -219,6 +205,15 @@ class Project final :
   private:
   int32_t _internal_id() const;
   void _internal_set_id(int32_t value);
+  public:
+
+  // int32 userId = 3;
+  void clear_userid();
+  int32_t userid() const;
+  void set_userid(int32_t value);
+  private:
+  int32_t _internal_userid() const;
+  void _internal_set_userid(int32_t value);
   public:
 
   // int32 currentVersion = 4;
@@ -248,8 +243,8 @@ class Project final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr userid_;
     int32_t id_;
+    int32_t userid_;
     int32_t currentversion_;
     int32_t totalversion_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -495,54 +490,24 @@ inline void Project::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:Project.name)
 }
 
-// string userId = 3;
+// int32 userId = 3;
 inline void Project::clear_userid() {
-  _impl_.userid_.ClearToEmpty();
+  _impl_.userid_ = 0;
 }
-inline const std::string& Project::userid() const {
+inline int32_t Project::_internal_userid() const {
+  return _impl_.userid_;
+}
+inline int32_t Project::userid() const {
   // @@protoc_insertion_point(field_get:Project.userId)
   return _internal_userid();
 }
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void Project::set_userid(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.userid_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+inline void Project::_internal_set_userid(int32_t value) {
+  
+  _impl_.userid_ = value;
+}
+inline void Project::set_userid(int32_t value) {
+  _internal_set_userid(value);
   // @@protoc_insertion_point(field_set:Project.userId)
-}
-inline std::string* Project::mutable_userid() {
-  std::string* _s = _internal_mutable_userid();
-  // @@protoc_insertion_point(field_mutable:Project.userId)
-  return _s;
-}
-inline const std::string& Project::_internal_userid() const {
-  return _impl_.userid_.Get();
-}
-inline void Project::_internal_set_userid(const std::string& value) {
-  
-  _impl_.userid_.Set(value, GetArenaForAllocation());
-}
-inline std::string* Project::_internal_mutable_userid() {
-  
-  return _impl_.userid_.Mutable(GetArenaForAllocation());
-}
-inline std::string* Project::release_userid() {
-  // @@protoc_insertion_point(field_release:Project.userId)
-  return _impl_.userid_.Release();
-}
-inline void Project::set_allocated_userid(std::string* userid) {
-  if (userid != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.userid_.SetAllocated(userid, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.userid_.IsDefault()) {
-    _impl_.userid_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Project.userId)
 }
 
 // int32 currentVersion = 4;

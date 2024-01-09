@@ -1,7 +1,7 @@
-#ifndef USER_H_
-#define USER_H_
+#ifndef USER_HPP
+#define USER_HPP
 #include<bits/stdc++.h>
-#include "fileOpr.h"
+#include "fileOpr.hpp"
 #include "../protobufs/user.pb.h"
 // #define users_file "Users.dat"
 #define endl "\n";
@@ -34,7 +34,11 @@ class Users{
         string serialized_users((istreambuf_iterator<char>(file)), (istreambuf_iterator<char>()));
         return serialized_users;
     }
-
+    void loadUserData(){
+        this->users = UserPortal();
+        string serialized_users = this->fetchUserData();
+        this->users.ParseFromString(serialized_users);
+    }
     int totalAccount(){
         //imp
         users.ParseFromString(fetchUserData());
@@ -49,7 +53,7 @@ class Users{
         bool Login(string username, string password){
             ifstream in_file(users_file,ios::binary);
             if(!in_file.is_open())return false;
-            users.ParseFromString(fetchUserData());
+            this->loadUserData();
             total_accounts = users.user_size();
             // cout<<users.ByteSizeLong()<<endl;
             // cout<<"total size"<<users.user_size()<<endl;
@@ -85,37 +89,51 @@ class Users{
             opf.close();
             cout << "Registration Successful" << endl;
             logged_in = true;
+            this->loadUserData();
             return true;
         }
         bool logout(){
-            logged_in = false;
-            user = User();
+            this->logged_in = false;
+            this->user = User();
             return true;
         }
         string getName(){
-            if(!logged_in) return "not logged in";
-            return user.name();
+            if(!this->logged_in) return "not logged in";
+            return this->user.name();
         }
         int getId(){
-            if(!logged_in) return -1;
-            return user.uid();
+            if(!this->logged_in) return -1;
+            return this->user.uid();
         }
-        int getProjectCount(){
-            if(!logged_in) return -1;
-            return user.project_count();
+        int getProjectCount(int user_id){
+            if(!this->logged_in) return -1;
+            return this->users.user(user_id).project_count();;
         }
-        bool updateProjectCount(){
-            if(!logged_in) return false;
-            for(int i = 0; i < users.user_size(); i++){
-                if (users.user(i).email() == user.email()){
-                    users.mutable_user(i)->set_project_count(users.user(i).project_count()+1);
+        bool updateProjectCount(int user_id){
+            if(!this->logged_in) return false;
+            for(int i = 0; i < this->users.user_size(); i++){
+                if (this->users.user(i).uid() == user_id){
+                    this->users.mutable_user(i)->set_project_count(this->users.user(i).project_count()+1);
                     ofstream opf(users_file, ios::binary);
                     opf.write(users.SerializeAsString().c_str(),users.ByteSizeLong());
                     opf.close();
+                    this->loadUserData();
+                    cout<<"project count updated"<<endl;
+                    cout<<this->users.user(i).project_count()<<endl;
                     return true;
                 }
             }
             return false;
+        }
+        void info(){
+            if(!this->logged_in) return;
+            this->loadUserData();
+            cout<<this->user.uid()<<endl;
+            cout<<this->user.name()<<endl;
+            cout<<this->user.email()<<endl;
+            cout<<this->user.address()<<endl;
+            cout<<this->user.psswd_hash()<<endl;
+            cout<<this->user.project_count()<<endl;
         }
 };
 

@@ -51,13 +51,9 @@ extern OperaionDefaultTypeInternal _Operaion_default_instance_;
 class Version;
 struct VersionDefaultTypeInternal;
 extern VersionDefaultTypeInternal _Version_default_instance_;
-class Versioning;
-struct VersioningDefaultTypeInternal;
-extern VersioningDefaultTypeInternal _Versioning_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::Operaion* Arena::CreateMaybeMessage<::Operaion>(Arena*);
 template<> ::Version* Arena::CreateMaybeMessage<::Version>(Arena*);
-template<> ::Versioning* Arena::CreateMaybeMessage<::Versioning>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 
 enum Operaion_operaion_type : int {
@@ -405,26 +401,11 @@ class Version final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kVersionIdFieldNumber = 1,
     kTimeFieldNumber = 4,
-    kVersionNumFieldNumber = 5,
     kOperationFieldNumber = 2,
+    kVersionIdFieldNumber = 1,
     kProjectIdFieldNumber = 3,
   };
-  // string versionId = 1;
-  void clear_versionid();
-  const std::string& versionid() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_versionid(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_versionid();
-  PROTOBUF_NODISCARD std::string* release_versionid();
-  void set_allocated_versionid(std::string* versionid);
-  private:
-  const std::string& _internal_versionid() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_versionid(const std::string& value);
-  std::string* _internal_mutable_versionid();
-  public:
-
   // string time = 4;
   void clear_time();
   const std::string& time() const;
@@ -437,20 +418,6 @@ class Version final :
   const std::string& _internal_time() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_time(const std::string& value);
   std::string* _internal_mutable_time();
-  public:
-
-  // string versionNum = 5;
-  void clear_versionnum();
-  const std::string& versionnum() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_versionnum(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_versionnum();
-  PROTOBUF_NODISCARD std::string* release_versionnum();
-  void set_allocated_versionnum(std::string* versionnum);
-  private:
-  const std::string& _internal_versionnum() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_versionnum(const std::string& value);
-  std::string* _internal_mutable_versionnum();
   public:
 
   // .Operaion operation = 2;
@@ -471,6 +438,15 @@ class Version final :
       ::Operaion* operation);
   ::Operaion* unsafe_arena_release_operation();
 
+  // int32 versionId = 1;
+  void clear_versionid();
+  int32_t versionid() const;
+  void set_versionid(int32_t value);
+  private:
+  int32_t _internal_versionid() const;
+  void _internal_set_versionid(int32_t value);
+  public:
+
   // int32 projectId = 3;
   void clear_projectid();
   int32_t projectid() const;
@@ -488,168 +464,10 @@ class Version final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr versionid_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr time_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr versionnum_;
     ::Operaion* operation_;
+    int32_t versionid_;
     int32_t projectid_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_version_2eproto;
-};
-// -------------------------------------------------------------------
-
-class Versioning final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Versioning) */ {
- public:
-  inline Versioning() : Versioning(nullptr) {}
-  ~Versioning() override;
-  explicit PROTOBUF_CONSTEXPR Versioning(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  Versioning(const Versioning& from);
-  Versioning(Versioning&& from) noexcept
-    : Versioning() {
-    *this = ::std::move(from);
-  }
-
-  inline Versioning& operator=(const Versioning& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Versioning& operator=(Versioning&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Versioning& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const Versioning* internal_default_instance() {
-    return reinterpret_cast<const Versioning*>(
-               &_Versioning_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    2;
-
-  friend void swap(Versioning& a, Versioning& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(Versioning* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Versioning* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Versioning* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<Versioning>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const Versioning& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const Versioning& from) {
-    Versioning::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(Versioning* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Versioning";
-  }
-  protected:
-  explicit Versioning(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kVersionsFieldNumber = 1,
-  };
-  // repeated .Version versions = 1;
-  int versions_size() const;
-  private:
-  int _internal_versions_size() const;
-  public:
-  void clear_versions();
-  ::Version* mutable_versions(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Version >*
-      mutable_versions();
-  private:
-  const ::Version& _internal_versions(int index) const;
-  ::Version* _internal_add_versions();
-  public:
-  const ::Version& versions(int index) const;
-  ::Version* add_versions();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Version >&
-      versions() const;
-
-  // @@protoc_insertion_point(class_scope:Versioning)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Version > versions_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -740,54 +558,24 @@ inline void Operaion::set_allocated_content(std::string* content) {
 
 // Version
 
-// string versionId = 1;
+// int32 versionId = 1;
 inline void Version::clear_versionid() {
-  _impl_.versionid_.ClearToEmpty();
+  _impl_.versionid_ = 0;
 }
-inline const std::string& Version::versionid() const {
+inline int32_t Version::_internal_versionid() const {
+  return _impl_.versionid_;
+}
+inline int32_t Version::versionid() const {
   // @@protoc_insertion_point(field_get:Version.versionId)
   return _internal_versionid();
 }
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void Version::set_versionid(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.versionid_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+inline void Version::_internal_set_versionid(int32_t value) {
+  
+  _impl_.versionid_ = value;
+}
+inline void Version::set_versionid(int32_t value) {
+  _internal_set_versionid(value);
   // @@protoc_insertion_point(field_set:Version.versionId)
-}
-inline std::string* Version::mutable_versionid() {
-  std::string* _s = _internal_mutable_versionid();
-  // @@protoc_insertion_point(field_mutable:Version.versionId)
-  return _s;
-}
-inline const std::string& Version::_internal_versionid() const {
-  return _impl_.versionid_.Get();
-}
-inline void Version::_internal_set_versionid(const std::string& value) {
-  
-  _impl_.versionid_.Set(value, GetArenaForAllocation());
-}
-inline std::string* Version::_internal_mutable_versionid() {
-  
-  return _impl_.versionid_.Mutable(GetArenaForAllocation());
-}
-inline std::string* Version::release_versionid() {
-  // @@protoc_insertion_point(field_release:Version.versionId)
-  return _impl_.versionid_.Release();
-}
-inline void Version::set_allocated_versionid(std::string* versionid) {
-  if (versionid != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.versionid_.SetAllocated(versionid, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.versionid_.IsDefault()) {
-    _impl_.versionid_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Version.versionId)
 }
 
 // .Operaion operation = 2;
@@ -950,105 +738,9 @@ inline void Version::set_allocated_time(std::string* time) {
   // @@protoc_insertion_point(field_set_allocated:Version.time)
 }
 
-// string versionNum = 5;
-inline void Version::clear_versionnum() {
-  _impl_.versionnum_.ClearToEmpty();
-}
-inline const std::string& Version::versionnum() const {
-  // @@protoc_insertion_point(field_get:Version.versionNum)
-  return _internal_versionnum();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void Version::set_versionnum(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.versionnum_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Version.versionNum)
-}
-inline std::string* Version::mutable_versionnum() {
-  std::string* _s = _internal_mutable_versionnum();
-  // @@protoc_insertion_point(field_mutable:Version.versionNum)
-  return _s;
-}
-inline const std::string& Version::_internal_versionnum() const {
-  return _impl_.versionnum_.Get();
-}
-inline void Version::_internal_set_versionnum(const std::string& value) {
-  
-  _impl_.versionnum_.Set(value, GetArenaForAllocation());
-}
-inline std::string* Version::_internal_mutable_versionnum() {
-  
-  return _impl_.versionnum_.Mutable(GetArenaForAllocation());
-}
-inline std::string* Version::release_versionnum() {
-  // @@protoc_insertion_point(field_release:Version.versionNum)
-  return _impl_.versionnum_.Release();
-}
-inline void Version::set_allocated_versionnum(std::string* versionnum) {
-  if (versionnum != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.versionnum_.SetAllocated(versionnum, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.versionnum_.IsDefault()) {
-    _impl_.versionnum_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Version.versionNum)
-}
-
-// -------------------------------------------------------------------
-
-// Versioning
-
-// repeated .Version versions = 1;
-inline int Versioning::_internal_versions_size() const {
-  return _impl_.versions_.size();
-}
-inline int Versioning::versions_size() const {
-  return _internal_versions_size();
-}
-inline void Versioning::clear_versions() {
-  _impl_.versions_.Clear();
-}
-inline ::Version* Versioning::mutable_versions(int index) {
-  // @@protoc_insertion_point(field_mutable:Versioning.versions)
-  return _impl_.versions_.Mutable(index);
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Version >*
-Versioning::mutable_versions() {
-  // @@protoc_insertion_point(field_mutable_list:Versioning.versions)
-  return &_impl_.versions_;
-}
-inline const ::Version& Versioning::_internal_versions(int index) const {
-  return _impl_.versions_.Get(index);
-}
-inline const ::Version& Versioning::versions(int index) const {
-  // @@protoc_insertion_point(field_get:Versioning.versions)
-  return _internal_versions(index);
-}
-inline ::Version* Versioning::_internal_add_versions() {
-  return _impl_.versions_.Add();
-}
-inline ::Version* Versioning::add_versions() {
-  ::Version* _add = _internal_add_versions();
-  // @@protoc_insertion_point(field_add:Versioning.versions)
-  return _add;
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Version >&
-Versioning::versions() const {
-  // @@protoc_insertion_point(field_list:Versioning.versions)
-  return _impl_.versions_;
-}
-
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 

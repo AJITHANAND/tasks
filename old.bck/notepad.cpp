@@ -109,7 +109,7 @@ bool registerUser(const char* name, const char* location, const char* email, con
     }
 
     // Register the user
-    user.set_uid(email);
+    // user.set_uid(email);
     user.set_email(email);
     user.set_psswd_hash(hash_password(password));
     user.set_name(name);

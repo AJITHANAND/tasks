@@ -1,268 +1,217 @@
 #include<bits/stdc++.h>
-#include "protobufs/user.pb.h"
-#include "protobufs/project.pb.h"
-#include "protobufs/version.pb.h"
-
 using namespace std;
 
-#define userFile "user_data.dat"
-#define projectFile "project_data.dat"
-#define versionFile "version_data.dat"
+#include "modules/user.hpp"
+#include "modules/project.hpp"
+#include "modules/versions.hpp"
 
-User l_user;
-bool logged = false;
 
-void updateUserProjectCount(int i) {
-    l_user.set_project_count(l_user.project_count() + i);
-    ofstream file(userFile, ios::binary);
-    l_user.SerializeToOstream(&file);
-    file.close();
-}
-
-void displayUserInfo(){
-    if(!logged) return;
-    cout << l_user.name() << endl;
-    cout << l_user.email() << endl;
-    cout << l_user.address() << endl;
-    cout << l_user.psswd_hash()<<endl;
-    cout<< "project count: " << l_user.project_count() << endl;
-    string temp;
-    getchar();
-    // getline(std::cin, temp);
-}
-
-string hash_password(const char *str) {
-    unsigned int hash = 5381;
-    int c;
-
-    while ((c = *str++))
-        hash = ((hash << 5) + hash) + c;
-
-    return to_string(hash);
-}
-
-bool login(const char *username, const char *password) {
-    ifstream file(userFile, ios::binary);
-    if (file.is_open()) {
-        string serializedUser((istreambuf_iterator<char>(file)), (istreambuf_iterator<char>()));
-        file.close();
-        User user;
-        user.ParseFromString(serializedUser);
-
-        if (user.email() == username && user.psswd_hash() == hash_password(password)) {
-            cout << "Login Successful" << endl;
-            l_user = user;
-            logged = true;
-            return true;
-        } else {
-            cout << "Login Failed" << endl;
-            return false;
-        }
-    }
-    return false;
-}
-bool fileExists() {
-    ifstream file(userFile,ios::binary);
-    if (!file.is_open()) {
-        return true;
-        ofstream file2(userFile);
-        if (!file2.is_open()) {
-            return false;
-        }
-        file2.close();
-    }
-    file.close();
-    return false;
-}
-bool registerUser(const char* name, const char* location, const char* email, const char* password) {
-    // create ifnot exists
-    if(!fileExists()){
-        cout<<"user data file not found.. exiting";
-        exit(1);
+class Notepad :public Users ,public Projects,public Versions{
+    string pause;
+    public :
+    void init(){
+        if(!this->Projects::init(this->getId()))return;
+        this->showOptions();
     }
 
-    // read for already registered user
-    ifstream file(userFile, ios::binary);
-    string serializedUser((istreambuf_iterator<char>(file)), (istreambuf_iterator<char>()));
-    file.close();
-    User user;
-    user.ParseFromString(serializedUser);
+    void showOptions(){
+        int option;
+        do{
+            cout<<"press enter to continue..."<<endl;
+            getchar();
+            getline(std::cin, pause);
+            system("clear");
+            cout << "Welcome " << this->getName() << endl;
+            cout << "Choose options:" << endl;
+            cout << "1. Create a notepad" << endl;
+            cout << "2. List all projects"<<endl;
+            cout << "3. Edit existing notepad" << endl;
+            cout << "4. Get all project info" << endl;
+            cout << "5. Logout && Exit" << endl;
+            cout << "6. User info" << endl;
+            cin >> option;
 
-    if (user.email() == email) {
-        return false;
+            switch (option) {
+                case 1:
+                    if(this->create(this->getProjectCount(getId()))){
+                        if(updateProjectCount(getId())){
+                            cout<<"notepad created successfully"<<endl;
+                        }
+                        else{
+                            cout<<"notepad created , but project count not updated"<<endl;
+                        }
+                    }else{
+                        cout<<"notepad creation failed";
+                    }
+                    break;
+                case 2:
+                    this->Projects::list();
+                    break;
+                case 3:
+                    this->editOptions();
+                    break;
+                case 4:
+                    this->getAllProjectsInfo();
+                    break;
+                case 5:
+                    if(this->logout()){}
+                    break;
+                case 6:
+                    this->Users::info();
+                    getchar();
+                    break;
+                default:
+                    cout << "Invalid option" << endl;
+                    break;
+            }
+        } while (option != 5);
     }
 
-    // Register the user
-    user.set_uid(email);
-    user.set_email(email);
-    user.set_psswd_hash(hash_password(password));
-    user.set_name(name);
-    user.set_address(location);
-    user.set_project_count(0);
-
-    // save 
-    ofstream file2(userFile, ios::binary);
-    user.SerializeToOstream(&file2);
-    file2.close();
-
-    cout << "Registration Successful" << endl;
-    return true;
-}
-
-void createNotepad() {
-    ifstream input_file(projectFile, ios::binary);
-    projectPortal portal;
-
-    if (input_file.is_open()) {
-        string serializedProjects((istreambuf_iterator<char>(input_file)), (istreambuf_iterator<char>()));
-        input_file.close();
-        portal.ParseFromString(serializedProjects);
-    }
-
-    Project project;
-    project.set_userid(l_user.uid());
-    project.set_name("Notepad "+to_string(l_user.project_count()+1));
-    project.set_id(l_user.project_count() + 1);
-    updateUserProjectCount(1);
-    portal.add_projects()->CopyFrom(project);
-
-    ofstream output_file(projectFile, ios::binary);
-    output_file.write(portal.SerializeAsString().c_str(), portal.ByteSizeLong());
-    output_file.close();
-
-    // version
-    // Versioning versioning;
-    
-
-    // versions.add_versions()->CopyFrom(version);
-
-    ofstream output_file2(versionFile, ios::binary);
-    output_file2.write(portal.SerializeAsString().c_str(), portal.ByteSizeLong());
-    output_file2.close();
-}
-
-void deleteNotepad() {
-    cout <<"Enter notepad number :";
-    int n;
-    cin >> n;
-    bool found = false;
-    if(n < 1 || n > l_user.project_count()){
-        cout << "Invalid notepad number";
-        return;
-    }
-    ifstream input_file(projectFile, ios::binary);
-    projectPortal portal;
-    if (input_file.is_open()) {
-        string serializedProjects((istreambuf_iterator<char>(input_file)), (istreambuf_iterator<char>()));
-        input_file.close();
-        portal.ParseFromString(serializedProjects);
-    }
-    for (int i = 0; i < portal.projects_size(); i++) {
-        if (portal.projects(i).id() == n) {
-            portal.mutable_projects(i)->Clear();
-            // updateUserProjectCount(-1);
-            found = true;
-            break;
-        }
-    }
-    ofstream output_file(projectFile, ios::binary);
-    output_file.write(portal.SerializeAsString().c_str(), portal.ByteSizeLong());
-    output_file.close();
-    if(!found){
-        cout << "Invalid notepad number";
-        return;
-    }
-}
-
-void editNotepad() {
-
-}
-
-void listProjects() {
-    ifstream input_file(projectFile, ios::binary);
-    projectPortal portal;
-
-    if (input_file.is_open()) {
-        string serializedProjects((istreambuf_iterator<char>(input_file)), (istreambuf_iterator<char>()));
-        input_file.close();
-        portal.ParseFromString(serializedProjects);
-    }
-
-    for (int i = 0; i < portal.projects_size(); i++) {
-        cout << portal.projects(i).name() << endl;
-    }
-}
-
-void loggedInUser() {
-    if (!logged) return;
-    string temp;
-    int option;
-    do {
+    void editOptions(){
+        int project_id;
+        cout<<"Enter project ID: "<<endl;
+        cin>>project_id;
+        if(!this->verifyProjectID(project_id))return;
+        int current_version = this->Projects::getVersion(project_id);
+        int total_version = this->Projects::getTotalVersion(project_id);
+        
+        int choice;
+        do {
         cout<<"press enter to continue..."<<endl;
         getchar();
-        getline(std::cin, temp);
+        getline(std::cin, pause);
         system("clear");
-        cout << "Welcome " << l_user.name() << endl;
-        cout << "Choose options:" << endl;
-        cout << "1. Create a notepad" << endl;
-        cout << "2. List all projects"<<endl;
-        cout << "3. Edit existing notepad" << endl;
-        cout << "4. Delete existing notepad" << endl;
-        cout << "5. Logout && Exit" << endl;
-        cout << "6. User info" << endl;
+        cout<< "Project ID: "<<project_id<<endl;
+        cout<< "Current Version: "<<current_version<<endl;
+        cout<< "Total Version: "<<total_version<<endl;
+        cout << "Choose the options for edit"<<endl;
+        cout << "1.Display contents"<<endl;
+        cout << "2.Append contents to the end"<<endl;
+        cout << "3.Update a line or entire file"<<endl;    
+        cout << "4.Delete a line or entire file"<<endl;
+        cout << "5.Revert a current version"<<endl;
+        cout << "7.Exit"<<endl;
+        cin >> choice;
+        switch (choice) {
+            case 1 :
+                system("clear");
+                cout << "All content of this version :"<<endl;
+                if(current_version  == 0){
+                    cout<<"No version yet available"<<endl;
+                    getchar();
+                    break;
+                }
+                this->Versions::info(this->getId(),project_id,current_version);
+                break;
+            case 2:
+                if(this->Versions::append(this->getId(),project_id,current_version,total_version)){
+                    if(this->Projects::updateVersion(project_id,total_version+1) && this->Projects::updateTotalVersion(project_id,total_version+1)){
+                        cout<<"Contents appended to the end"<<endl;
+                        current_version = total_version +1;
+                        total_version++;
+                    }else{
+                        cout<<"New version is created but , either version number or total verison number is note updated"<<endl;
+                    }
+                }else{
+                    cout<<"Contents appended to the end failed"<<endl;
+                }
+                break;
+            case 3: 
+                if(this->Versions::insertOrDelete(this->getId(),project_id,current_version,total_version,true)){
+                    if(this->Projects::updateVersion(project_id,total_version+1) && this->Projects::updateTotalVersion(project_id,total_version+1)){
+                        cout<<"Contents modified to the end"<<endl;
+                        current_version = total_version +1;
+                        total_version++;
+                    }else{
+                        cout<<"New version is created but , either version number or total verison number is note updated"<<endl;
+                    }
+                }else{
+                    cout<<"Contents updations to the end failed"<<endl;
+                }
+                break;
+            case 4:
+                if(this->Versions::insertOrDelete(this->getId(),project_id,current_version,total_version,false)){
+                    if(this->Projects::updateVersion(project_id,total_version+1) && this->Projects::updateTotalVersion(project_id,total_version+1)){
+                        cout<<"Contents modified to the end"<<endl;
+                        current_version = total_version +1;
+                        total_version++;
+                    }else{
+                        cout<<"New version is created but , either version number or total verison number is note updated"<<endl;
+                    }
+                }else{
+                    cout<<"Contents updations to the end failed"<<endl;
+                }
+                break;
+            case 5:
+
+                if(revert(getId(),project_id,current_version,total_version)){
+                    current_version = getVersion(project_id);
+                    cout<<"revert successful"<<endl;
+                }else{
+                    cout<<"revert failed"<<endl;
+                }
+             
+                break;
+            case 7: 
+                
+                break;
+        }
+        
+    }while(choice !=7);
+    }
+
+
+};
+
+
+
+
+
+
+int main(){
+
+    Notepad note;
+    
+
+    string email, password, name, address;
+    int option;
+
+    
+
+    do {
+
+        cout << "Choose an option..." << endl;
+        cout << "1. Login" << endl;
+        cout << "2. Register" << endl;
+        cout << "3. Exit" << endl;
+        cout << "0. Dev" << endl;
+
         cin >> option;
 
         switch (option) {
-            case 1:
-                createNotepad();
-                break;
-            case 2:
-                listProjects();
-                break;
-            case 3:
-                editNotepad();
-                break;
-            case 4:
-                deleteNotepad();
-                break;
-            case 5:
-                logged = false;
-                break;
-            case 6:
-                displayUserInfo();
-                getchar();
-                break;
-            default:
-                cout << "Invalid option" << endl;
-                break;
-        }
-    } while (option != 5);
-}
-
-int main() {
-    string email, password, name, address;
-
-    cout << "Choose an option..." << endl;
-    cout << "1. Login" << endl;
-    cout << "2. Register" << endl;
-    cout << "3. Exit" << endl;
-    cout << "0. Dev" << endl;
-
-    int option;
-    cin >> option;
-
-    switch (option) {
         case 0:
             email = "ajith@gmail.com";
             password = "1234";
-            if (login(email.c_str(), password.c_str())) loggedInUser();
+            if(note.Login(email, password)){
+                cout << "Login Successful" << endl;
+                note.init();
+            }else{
+                cout<<"users not found.. please register"<<endl;
+
+            }
             break;
         case 1:
             cout << "Enter your email: ";
             cin >> email;
             cout << "\nEnter your password: ";
             cin >> password;
-            if (login(email.c_str(), password.c_str())) loggedInUser();
+            if(note.Login(email, password)){
+                cout << "Login Successful" << endl;
+                note.init();
+            }else{
+                cout<<"users not found.. please register"<<endl;
+
+            }
             break;
         case 2:
             cout << "Enter your name: ";
@@ -274,9 +223,10 @@ int main() {
             cin >> email;
             cout << "\nEnter your password: ";
             cin >> password;
-            registerUser(name.c_str(), address.c_str(), email.c_str(), password.c_str());
+            note.registerUser(name.c_str(),address.c_str(),email.c_str(),password.c_str());
             break;
         case 3:
+            
             cout << "Goodbye..." << endl;
             exit(0);
         default:
@@ -284,5 +234,8 @@ int main() {
             break;
     }
 
+    }while(option !=3);
+
     return 0;
+
 }

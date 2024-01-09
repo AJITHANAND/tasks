@@ -23,8 +23,8 @@ namespace _pbi = _pb::internal;
 PROTOBUF_CONSTEXPR Project::Project(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.userid_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
   , /*decltype(_impl_.id_)*/0
+  , /*decltype(_impl_.userid_)*/0
   , /*decltype(_impl_.currentversion_)*/0
   , /*decltype(_impl_.totalversion_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
@@ -86,7 +86,7 @@ static const ::_pb::Message* const file_default_instances[] = {
 
 const char descriptor_table_protodef_project_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\rproject.proto\"a\n\007Project\022\n\n\002id\030\001 \001(\005\022\014"
-  "\n\004name\030\002 \001(\t\022\016\n\006userId\030\003 \001(\t\022\026\n\016currentV"
+  "\n\004name\030\002 \001(\t\022\016\n\006userId\030\003 \001(\005\022\026\n\016currentV"
   "ersion\030\004 \001(\005\022\024\n\014totalVersion\030\005 \001(\005\"+\n\rpr"
   "ojectPortal\022\032\n\010projects\030\001 \003(\0132\010.Projectb"
   "\006proto3"
@@ -124,8 +124,8 @@ Project::Project(const Project& from)
   Project* const _this = this; (void)_this;
   new (&_impl_) Impl_{
       decltype(_impl_.name_){}
-    , decltype(_impl_.userid_){}
     , decltype(_impl_.id_){}
+    , decltype(_impl_.userid_){}
     , decltype(_impl_.currentversion_){}
     , decltype(_impl_.totalversion_){}
     , /*decltype(_impl_._cached_size_)*/{}};
@@ -137,14 +137,6 @@ Project::Project(const Project& from)
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_name().empty()) {
     _this->_impl_.name_.Set(from._internal_name(), 
-      _this->GetArenaForAllocation());
-  }
-  _impl_.userid_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.userid_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_userid().empty()) {
-    _this->_impl_.userid_.Set(from._internal_userid(), 
       _this->GetArenaForAllocation());
   }
   ::memcpy(&_impl_.id_, &from._impl_.id_,
@@ -159,8 +151,8 @@ inline void Project::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.name_){}
-    , decltype(_impl_.userid_){}
     , decltype(_impl_.id_){0}
+    , decltype(_impl_.userid_){0}
     , decltype(_impl_.currentversion_){0}
     , decltype(_impl_.totalversion_){0}
     , /*decltype(_impl_._cached_size_)*/{}
@@ -168,10 +160,6 @@ inline void Project::SharedCtor(
   _impl_.name_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
     _impl_.name_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  _impl_.userid_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.userid_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
@@ -187,7 +175,6 @@ Project::~Project() {
 inline void Project::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.name_.Destroy();
-  _impl_.userid_.Destroy();
 }
 
 void Project::SetCachedSize(int size) const {
@@ -201,7 +188,6 @@ void Project::Clear() {
   (void) cached_has_bits;
 
   _impl_.name_.ClearToEmpty();
-  _impl_.userid_.ClearToEmpty();
   ::memset(&_impl_.id_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.totalversion_) -
       reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.totalversion_));
@@ -232,13 +218,11 @@ const char* Project::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
         } else
           goto handle_unusual;
         continue;
-      // string userId = 3;
+      // int32 userId = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          auto str = _internal_mutable_userid();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          _impl_.userid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "Project.userId"));
         } else
           goto handle_unusual;
         continue;
@@ -303,14 +287,10 @@ uint8_t* Project::_InternalSerialize(
         2, this->_internal_name(), target);
   }
 
-  // string userId = 3;
-  if (!this->_internal_userid().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_userid().data(), static_cast<int>(this->_internal_userid().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "Project.userId");
-    target = stream->WriteStringMaybeAliased(
-        3, this->_internal_userid(), target);
+  // int32 userId = 3;
+  if (this->_internal_userid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_userid(), target);
   }
 
   // int32 currentVersion = 4;
@@ -348,16 +328,14 @@ size_t Project::ByteSizeLong() const {
         this->_internal_name());
   }
 
-  // string userId = 3;
-  if (!this->_internal_userid().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_userid());
-  }
-
   // int32 id = 1;
   if (this->_internal_id() != 0) {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_id());
+  }
+
+  // int32 userId = 3;
+  if (this->_internal_userid() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_userid());
   }
 
   // int32 currentVersion = 4;
@@ -391,11 +369,11 @@ void Project::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOB
   if (!from._internal_name().empty()) {
     _this->_internal_set_name(from._internal_name());
   }
-  if (!from._internal_userid().empty()) {
-    _this->_internal_set_userid(from._internal_userid());
-  }
   if (from._internal_id() != 0) {
     _this->_internal_set_id(from._internal_id());
+  }
+  if (from._internal_userid() != 0) {
+    _this->_internal_set_userid(from._internal_userid());
   }
   if (from._internal_currentversion() != 0) {
     _this->_internal_set_currentversion(from._internal_currentversion());
@@ -425,10 +403,6 @@ void Project::InternalSwap(Project* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &_impl_.name_, lhs_arena,
       &other->_impl_.name_, rhs_arena
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.userid_, lhs_arena,
-      &other->_impl_.userid_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Project, _impl_.totalversion_)
