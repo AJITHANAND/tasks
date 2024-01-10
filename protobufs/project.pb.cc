@@ -27,6 +27,7 @@ PROTOBUF_CONSTEXPR Project::Project(
   , /*decltype(_impl_.userid_)*/0
   , /*decltype(_impl_.currentversion_)*/0
   , /*decltype(_impl_.totalversion_)*/0
+  , /*decltype(_impl_.modulofactor_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct ProjectDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ProjectDefaultTypeInternal()
@@ -66,6 +67,7 @@ const uint32_t TableStruct_project_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
   PROTOBUF_FIELD_OFFSET(::Project, _impl_.userid_),
   PROTOBUF_FIELD_OFFSET(::Project, _impl_.currentversion_),
   PROTOBUF_FIELD_OFFSET(::Project, _impl_.totalversion_),
+  PROTOBUF_FIELD_OFFSET(::Project, _impl_.modulofactor_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::projectPortal, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -76,7 +78,7 @@ const uint32_t TableStruct_project_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::Project)},
-  { 11, -1, -1, sizeof(::projectPortal)},
+  { 12, -1, -1, sizeof(::projectPortal)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -85,15 +87,15 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_project_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\rproject.proto\"a\n\007Project\022\n\n\002id\030\001 \001(\005\022\014"
+  "\n\rproject.proto\"w\n\007Project\022\n\n\002id\030\001 \001(\005\022\014"
   "\n\004name\030\002 \001(\t\022\016\n\006userId\030\003 \001(\005\022\026\n\016currentV"
-  "ersion\030\004 \001(\005\022\024\n\014totalVersion\030\005 \001(\005\"+\n\rpr"
-  "ojectPortal\022\032\n\010projects\030\001 \003(\0132\010.Projectb"
-  "\006proto3"
+  "ersion\030\004 \001(\005\022\024\n\014totalVersion\030\005 \001(\005\022\024\n\014mo"
+  "duloFactor\030\006 \001(\005\"+\n\rprojectPortal\022\032\n\010pro"
+  "jects\030\001 \003(\0132\010.Projectb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_project_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_project_2eproto = {
-    false, false, 167, descriptor_table_protodef_project_2eproto,
+    false, false, 189, descriptor_table_protodef_project_2eproto,
     "project.proto",
     &descriptor_table_project_2eproto_once, nullptr, 0, 2,
     schemas, file_default_instances, TableStruct_project_2eproto::offsets,
@@ -128,6 +130,7 @@ Project::Project(const Project& from)
     , decltype(_impl_.userid_){}
     , decltype(_impl_.currentversion_){}
     , decltype(_impl_.totalversion_){}
+    , decltype(_impl_.modulofactor_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -140,8 +143,8 @@ Project::Project(const Project& from)
       _this->GetArenaForAllocation());
   }
   ::memcpy(&_impl_.id_, &from._impl_.id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.totalversion_) -
-    reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.totalversion_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.modulofactor_) -
+    reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.modulofactor_));
   // @@protoc_insertion_point(copy_constructor:Project)
 }
 
@@ -155,6 +158,7 @@ inline void Project::SharedCtor(
     , decltype(_impl_.userid_){0}
     , decltype(_impl_.currentversion_){0}
     , decltype(_impl_.totalversion_){0}
+    , decltype(_impl_.modulofactor_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
   _impl_.name_.InitDefault();
@@ -189,8 +193,8 @@ void Project::Clear() {
 
   _impl_.name_.ClearToEmpty();
   ::memset(&_impl_.id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.totalversion_) -
-      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.totalversion_));
+      reinterpret_cast<char*>(&_impl_.modulofactor_) -
+      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.modulofactor_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -238,6 +242,14 @@ const char* Project::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
           _impl_.totalversion_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 moduloFactor = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          _impl_.modulofactor_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -305,6 +317,12 @@ uint8_t* Project::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteInt32ToArray(5, this->_internal_totalversion(), target);
   }
 
+  // int32 moduloFactor = 6;
+  if (this->_internal_modulofactor() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(6, this->_internal_modulofactor(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -348,6 +366,11 @@ size_t Project::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_totalversion());
   }
 
+  // int32 moduloFactor = 6;
+  if (this->_internal_modulofactor() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_modulofactor());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -381,6 +404,9 @@ void Project::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOB
   if (from._internal_totalversion() != 0) {
     _this->_internal_set_totalversion(from._internal_totalversion());
   }
+  if (from._internal_modulofactor() != 0) {
+    _this->_internal_set_modulofactor(from._internal_modulofactor());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -405,8 +431,8 @@ void Project::InternalSwap(Project* other) {
       &other->_impl_.name_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Project, _impl_.totalversion_)
-      + sizeof(Project::_impl_.totalversion_)
+      PROTOBUF_FIELD_OFFSET(Project, _impl_.modulofactor_)
+      + sizeof(Project::_impl_.modulofactor_)
       - PROTOBUF_FIELD_OFFSET(Project, _impl_.id_)>(
           reinterpret_cast<char*>(&_impl_.id_),
           reinterpret_cast<char*>(&other->_impl_.id_));

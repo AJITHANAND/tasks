@@ -40,6 +40,7 @@ PROTOBUF_CONSTEXPR Version::Version(
   , /*decltype(_impl_.operation_)*/nullptr
   , /*decltype(_impl_.versionid_)*/0
   , /*decltype(_impl_.projectid_)*/0
+  , /*decltype(_impl_.versionnumber_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct VersionDefaultTypeInternal {
   PROTOBUF_CONSTEXPR VersionDefaultTypeInternal()
@@ -73,6 +74,7 @@ const uint32_t TableStruct_version_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
   PROTOBUF_FIELD_OFFSET(::Version, _impl_.operation_),
   PROTOBUF_FIELD_OFFSET(::Version, _impl_.projectid_),
   PROTOBUF_FIELD_OFFSET(::Version, _impl_.time_),
+  PROTOBUF_FIELD_OFFSET(::Version, _impl_.versionnumber_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::Operaion)},
@@ -88,13 +90,14 @@ const char descriptor_table_protodef_version_2eproto[] PROTOBUF_SECTION_VARIABLE
   "\n\rversion.proto\"u\n\010Operaion\022%\n\004type\030\001 \001("
   "\0162\027.Operaion.operaion_type\022\017\n\007content\030\002 "
   "\001(\t\"1\n\roperaion_type\022\n\n\006insert\020\000\022\010\n\004edit"
-  "\020\001\022\n\n\006delete\020\002\"[\n\007Version\022\021\n\tversionId\030\001"
+  "\020\001\022\n\n\006delete\020\002\"r\n\007Version\022\021\n\tversionId\030\001"
   " \001(\005\022\034\n\toperation\030\002 \001(\0132\t.Operaion\022\021\n\tpr"
-  "ojectId\030\003 \001(\005\022\014\n\004time\030\004 \001(\tb\006proto3"
+  "ojectId\030\003 \001(\005\022\014\n\004time\030\004 \001(\t\022\025\n\rversionNu"
+  "mber\030\005 \001(\005b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_version_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_version_2eproto = {
-    false, false, 235, descriptor_table_protodef_version_2eproto,
+    false, false, 258, descriptor_table_protodef_version_2eproto,
     "version.proto",
     &descriptor_table_version_2eproto_once, nullptr, 0, 2,
     schemas, file_default_instances, TableStruct_version_2eproto::offsets,
@@ -389,6 +392,7 @@ Version::Version(const Version& from)
     , decltype(_impl_.operation_){nullptr}
     , decltype(_impl_.versionid_){}
     , decltype(_impl_.projectid_){}
+    , decltype(_impl_.versionnumber_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -404,8 +408,8 @@ Version::Version(const Version& from)
     _this->_impl_.operation_ = new ::Operaion(*from._impl_.operation_);
   }
   ::memcpy(&_impl_.versionid_, &from._impl_.versionid_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.projectid_) -
-    reinterpret_cast<char*>(&_impl_.versionid_)) + sizeof(_impl_.projectid_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.versionnumber_) -
+    reinterpret_cast<char*>(&_impl_.versionid_)) + sizeof(_impl_.versionnumber_));
   // @@protoc_insertion_point(copy_constructor:Version)
 }
 
@@ -418,6 +422,7 @@ inline void Version::SharedCtor(
     , decltype(_impl_.operation_){nullptr}
     , decltype(_impl_.versionid_){0}
     , decltype(_impl_.projectid_){0}
+    , decltype(_impl_.versionnumber_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
   _impl_.time_.InitDefault();
@@ -457,8 +462,8 @@ void Version::Clear() {
   }
   _impl_.operation_ = nullptr;
   ::memset(&_impl_.versionid_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.projectid_) -
-      reinterpret_cast<char*>(&_impl_.versionid_)) + sizeof(_impl_.projectid_));
+      reinterpret_cast<char*>(&_impl_.versionnumber_) -
+      reinterpret_cast<char*>(&_impl_.versionid_)) + sizeof(_impl_.versionnumber_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -499,6 +504,14 @@ const char* Version::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "Version.time"));
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 versionNumber = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          _impl_.versionnumber_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -560,6 +573,12 @@ uint8_t* Version::_InternalSerialize(
         4, this->_internal_time(), target);
   }
 
+  // int32 versionNumber = 5;
+  if (this->_internal_versionnumber() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(5, this->_internal_versionnumber(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -600,6 +619,11 @@ size_t Version::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_projectid());
   }
 
+  // int32 versionNumber = 5;
+  if (this->_internal_versionnumber() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_versionnumber());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -631,6 +655,9 @@ void Version::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOB
   if (from._internal_projectid() != 0) {
     _this->_internal_set_projectid(from._internal_projectid());
   }
+  if (from._internal_versionnumber() != 0) {
+    _this->_internal_set_versionnumber(from._internal_versionnumber());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -655,8 +682,8 @@ void Version::InternalSwap(Version* other) {
       &other->_impl_.time_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Version, _impl_.projectid_)
-      + sizeof(Version::_impl_.projectid_)
+      PROTOBUF_FIELD_OFFSET(Version, _impl_.versionnumber_)
+      + sizeof(Version::_impl_.versionnumber_)
       - PROTOBUF_FIELD_OFFSET(Version, _impl_.operation_)>(
           reinterpret_cast<char*>(&_impl_.operation_),
           reinterpret_cast<char*>(&other->_impl_.operation_));

@@ -33,11 +33,15 @@ class Projects{
 
     bool create(int projects_count){
         this->loadProjectData();
+        int modulo;
+        cout<<"Enter modulo factor (5 - default): "<<endl;
+        cin>>modulo;
         project.set_userid(user_id);
         project.set_name("Notepad "+to_string(projects_count+1));
         project.set_id(projects_count + 1);
-        project.set_currentversion(0);
-        project.set_totalversion(0);
+        project.set_currentversion(-1);
+        project.set_totalversion(-1);
+        project.set_modulofactor(modulo);
         portal.add_projects()->CopyFrom(project);
         if(this->saveState()){
             return true;
@@ -54,10 +58,11 @@ class Projects{
             cout<<portal.projects(i).name()<<endl;
         }
     }
-    bool updateVersion(int project_id,int new_version_number){
+    bool updateVersionAndTotal(int project_id,int total_version){
         for(int i=0;i<portal.projects_size();i++){
             if(portal.projects(i).id()==project_id){
-                portal.mutable_projects(i)->set_currentversion(new_version_number);
+                portal.mutable_projects(i)->set_currentversion(total_version);
+                portal.mutable_projects(i)->set_totalversion(total_version);
                 return this->saveState();
             }
         }
@@ -113,6 +118,7 @@ class Projects{
             cout<<"User ID\t:"<<portal.projects(i).userid()<<endl;
             cout<<"Pre Ver\t:"<<portal.projects(i).currentversion()<<endl;
             cout<<"Ful Ver\t:"<<portal.projects(i).totalversion()<<endl;
+            cout<<"Modulo Factor\t:"<<portal.projects(i).modulofactor()<<endl;
             cout<<" --------------------------------------------------------" <<endl;
         }
     }
@@ -123,7 +129,9 @@ class Projects{
     int getTotalVersion(int id){
         return portal.projects(id-1).totalversion();
     }
-
+    int getModuloFactor(int id){
+        return portal.projects(id-1).modulofactor();
+    }
     bool revert(int user_id , int project_id , int version_id,int total_version){
         cout<<"revert new version id :"<<endl;
         int revert_id ;

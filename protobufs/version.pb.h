@@ -405,6 +405,7 @@ class Version final :
     kOperationFieldNumber = 2,
     kVersionIdFieldNumber = 1,
     kProjectIdFieldNumber = 3,
+    kVersionNumberFieldNumber = 5,
   };
   // string time = 4;
   void clear_time();
@@ -456,6 +457,15 @@ class Version final :
   void _internal_set_projectid(int32_t value);
   public:
 
+  // int32 versionNumber = 5;
+  void clear_versionnumber();
+  int32_t versionnumber() const;
+  void set_versionnumber(int32_t value);
+  private:
+  int32_t _internal_versionnumber() const;
+  void _internal_set_versionnumber(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Version)
  private:
   class _Internal;
@@ -468,6 +478,7 @@ class Version final :
     ::Operaion* operation_;
     int32_t versionid_;
     int32_t projectid_;
+    int32_t versionnumber_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -736,6 +747,26 @@ inline void Version::set_allocated_time(std::string* time) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:Version.time)
+}
+
+// int32 versionNumber = 5;
+inline void Version::clear_versionnumber() {
+  _impl_.versionnumber_ = 0;
+}
+inline int32_t Version::_internal_versionnumber() const {
+  return _impl_.versionnumber_;
+}
+inline int32_t Version::versionnumber() const {
+  // @@protoc_insertion_point(field_get:Version.versionNumber)
+  return _internal_versionnumber();
+}
+inline void Version::_internal_set_versionnumber(int32_t value) {
+  
+  _impl_.versionnumber_ = value;
+}
+inline void Version::set_versionnumber(int32_t value) {
+  _internal_set_versionnumber(value);
+  // @@protoc_insertion_point(field_set:Version.versionNumber)
 }
 
 #ifdef __GNUC__

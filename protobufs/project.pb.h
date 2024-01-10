@@ -183,6 +183,7 @@ class Project final :
     kUserIdFieldNumber = 3,
     kCurrentVersionFieldNumber = 4,
     kTotalVersionFieldNumber = 5,
+    kModuloFactorFieldNumber = 6,
   };
   // string name = 2;
   void clear_name();
@@ -234,6 +235,15 @@ class Project final :
   void _internal_set_totalversion(int32_t value);
   public:
 
+  // int32 moduloFactor = 6;
+  void clear_modulofactor();
+  int32_t modulofactor() const;
+  void set_modulofactor(int32_t value);
+  private:
+  int32_t _internal_modulofactor() const;
+  void _internal_set_modulofactor(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Project)
  private:
   class _Internal;
@@ -247,6 +257,7 @@ class Project final :
     int32_t userid_;
     int32_t currentversion_;
     int32_t totalversion_;
+    int32_t modulofactor_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -548,6 +559,26 @@ inline void Project::_internal_set_totalversion(int32_t value) {
 inline void Project::set_totalversion(int32_t value) {
   _internal_set_totalversion(value);
   // @@protoc_insertion_point(field_set:Project.totalVersion)
+}
+
+// int32 moduloFactor = 6;
+inline void Project::clear_modulofactor() {
+  _impl_.modulofactor_ = 0;
+}
+inline int32_t Project::_internal_modulofactor() const {
+  return _impl_.modulofactor_;
+}
+inline int32_t Project::modulofactor() const {
+  // @@protoc_insertion_point(field_get:Project.moduloFactor)
+  return _internal_modulofactor();
+}
+inline void Project::_internal_set_modulofactor(int32_t value) {
+  
+  _impl_.modulofactor_ = value;
+}
+inline void Project::set_modulofactor(int32_t value) {
+  _internal_set_modulofactor(value);
+  // @@protoc_insertion_point(field_set:Project.moduloFactor)
 }
 
 // -------------------------------------------------------------------

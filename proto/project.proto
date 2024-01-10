@@ -6,6 +6,7 @@ message Project{
     int32 userId =3;
     int32 currentVersion=4;
     int32 totalVersion=5;
+    int32 moduloFactor =6;
 }
 
 message projectPortal{

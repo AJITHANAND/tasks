@@ -74,7 +74,8 @@ class Notepad :public Users ,public Projects,public Versions{
         if(!this->verifyProjectID(project_id))return;
         int current_version = this->Projects::getVersion(project_id);
         int total_version = this->Projects::getTotalVersion(project_id);
-        
+        int modulo_factor = this->Projects::getModuloFactor(project_id);
+        bool is_version_changed;
         int choice;
         do {
         cout<<"press enter to continue..."<<endl;
@@ -96,7 +97,7 @@ class Notepad :public Users ,public Projects,public Versions{
             case 1 :
                 system("clear");
                 cout << "All content of this version :"<<endl;
-                if(current_version  == 0){
+                if(current_version  == -1){
                     cout<<"No version yet available"<<endl;
                     getchar();
                     break;
@@ -104,39 +105,61 @@ class Notepad :public Users ,public Projects,public Versions{
                 this->Versions::info(this->getId(),project_id,current_version);
                 break;
             case 2:
-                if(this->Versions::append(this->getId(),project_id,current_version,total_version)){
-                    if(this->Projects::updateVersion(project_id,total_version+1) && this->Projects::updateTotalVersion(project_id,total_version+1)){
-                        cout<<"Contents appended to the end"<<endl;
+                if(this->Versions::append(this->getId(),project_id,current_version,total_version,modulo_factor)){
+                    cout<<"Content appened successfully "<<endl;
+                    if(current_version == -1){
+                        if(this->Projects::updateVersionAndTotal(project_id,1)){
+                            cout<<"Version & total  updated for 1 successfully"<<endl;
+                            current_version =1;
+                            total_version =1;
+                        }
+                        break;
+                    }
+                    is_version_changed  = this->Versions::versionStatus();
+                    if(is_version_changed && this->Projects::updateVersionAndTotal(project_id,total_version+1)){
+                        cout<<"new version file created"<<endl;
                         current_version = total_version +1;
                         total_version++;
-                    }else{
-                        cout<<"New version is created but , either version number or total verison number is note updated"<<endl;
                     }
                 }else{
                     cout<<"Contents appended to the end failed"<<endl;
                 }
                 break;
             case 3: 
-                if(this->Versions::insertOrDelete(this->getId(),project_id,current_version,total_version,true)){
-                    if(this->Projects::updateVersion(project_id,total_version+1) && this->Projects::updateTotalVersion(project_id,total_version+1)){
-                        cout<<"Contents modified to the end"<<endl;
+                if(this->Versions::insertOrDelete(this->getId(),project_id,current_version,total_version,true,modulo_factor)){
+                    if(current_version == -1){
+                        if(this->Projects::updateVersionAndTotal(project_id,1)){
+                            cout<<"Version & total  updated for 1 successfully"<<endl;
+                            current_version =1;
+                            total_version =1;
+                        }
+                        break;
+                    }
+                    is_version_changed  = this->Versions::versionStatus();
+                    if(is_version_changed && this->Projects::updateVersionAndTotal(project_id,total_version+1)){
+                        cout<<"new version file created"<<endl;
                         current_version = total_version +1;
                         total_version++;
-                    }else{
-                        cout<<"New version is created but , either version number or total verison number is note updated"<<endl;
                     }
                 }else{
                     cout<<"Contents updations to the end failed"<<endl;
                 }
                 break;
             case 4:
-                if(this->Versions::insertOrDelete(this->getId(),project_id,current_version,total_version,false)){
-                    if(this->Projects::updateVersion(project_id,total_version+1) && this->Projects::updateTotalVersion(project_id,total_version+1)){
-                        cout<<"Contents modified to the end"<<endl;
+                if(this->Versions::insertOrDelete(this->getId(),project_id,current_version,total_version,false,modulo_factor)){
+                    if(current_version == -1){
+                        if(this->Projects::updateVersionAndTotal(project_id,1)){
+                            cout<<"Version & total  updated for 1 successfully"<<endl;
+                            current_version =1;
+                            total_version =1;
+                        }
+                        break;
+                    }
+                    is_version_changed  = this->Versions::versionStatus();
+                    if(is_version_changed && this->Projects::updateVersionAndTotal(project_id,total_version+1)){
+                        cout<<"new version file created"<<endl;
                         current_version = total_version +1;
                         total_version++;
-                    }else{
-                        cout<<"New version is created but , either version number or total verison number is note updated"<<endl;
                     }
                 }else{
                     cout<<"Contents updations to the end failed"<<endl;

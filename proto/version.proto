@@ -15,4 +15,5 @@ message Version{
     Operaion operation =2;
     int32 projectId =3;
     string time =4;
+    int32 versionNumber =5;
 }
