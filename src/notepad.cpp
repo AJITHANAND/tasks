@@ -1,9 +1,6 @@
-#include<bits/stdc++.h>
-using namespace std;
-#include "../includes/fileoperations.hpp"
-#include "../modules/user.hpp"
-#include "../includes/project.hpp"
-#include "../modules/versions.hpp"
+#include "../include/user.hpp"
+#include "../include/project.hpp"
+#include "../include/versions.hpp"
 
 
 class Notepad :public Users ,public Projects,public Versions{

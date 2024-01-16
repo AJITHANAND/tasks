@@ -1,13 +1,12 @@
 #include<bits/stdc++.h>
 using namespace std;
-#include "../includes/project.hpp"
-#include "user.hpp"
-#include "../protobufs/project.pb.h"
+#include "../include/project.hpp"
+#include "../include/user.hpp"
 #define endl "\n";
 
 const string tail ="projects.dat";
 
-inline void Projects::loadProjectData(){
+void Projects::loadProjectData(){
     ifstream input_file(project_file,ios::binary);
     string serializedProjects((istreambuf_iterator<char>(input_file)), (istreambuf_iterator<char>()));
     input_file.close();
@@ -16,7 +15,7 @@ inline void Projects::loadProjectData(){
 
 Projects::Projects():user_id(-1){};
 
-inline bool Projects::init(int user_id){
+ bool Projects::init(int user_id){
     this->user_id=user_id;
     project_file=to_string(user_id)+"_"+tail;
     fileOperations::fileExists(project_file);
@@ -24,7 +23,7 @@ inline bool Projects::init(int user_id){
     return user_id != -1;
 }
 
-inline bool Projects::create(int projects_count){
+bool Projects::create(int projects_count){
     this->loadProjectData();
     int modulo;
     cout<<"Enter modulo factor (5 - default): "<<endl;
@@ -43,7 +42,7 @@ inline bool Projects::create(int projects_count){
     }
 }
 
-inline void Projects::list(){
+void Projects::list(){
     if (this->isEmpty()){
         cout << "No projects found" << endl;
         return;
@@ -53,7 +52,7 @@ inline void Projects::list(){
     }
 }
 
-inline bool Projects::updateVersionAndTotal(int project_id, int total_version){
+bool Projects::updateVersionAndTotal(int project_id, int total_version){
     this->loadProjectData();
     for(int i=0;i<portal.projects_size();i++){
         if(portal.projects(i).id()==project_id){
@@ -69,7 +68,7 @@ inline bool Projects::updateVersionAndTotal(int project_id, int total_version){
     return false;
 }
 
-inline bool Projects::updateTotalVersion(int project_id, int new_total_version_number){
+bool Projects::updateTotalVersion(int project_id, int new_total_version_number){
     this->loadProjectData();
     for(int i=0;i<portal.projects_size();i++){
         if(portal.projects(i).id()==project_id){
@@ -99,7 +98,7 @@ inline bool Projects::saveState(){
     }
 }
 
-inline bool Projects::verifyProjectID(int id){
+bool Projects::verifyProjectID(int id){
     if(isEmpty()) {
         cerr<<"No projects found!"<<endl;
         return false;
@@ -119,7 +118,7 @@ inline bool Projects::verifyProjectID(int id){
     return true;
 }
 
-inline void Projects::getAllProjectsInfo(){
+void Projects::getAllProjectsInfo(){
         for(int i=0;i<portal.projects_size();i++){
         cout<<"ID\t:"<<portal.projects(i).id()<<endl;
         cout<<"Name\t:"<<portal.projects(i).name()<<endl;
@@ -131,15 +130,15 @@ inline void Projects::getAllProjectsInfo(){
     }
 }
 
-int Projects::getVersion(int id){
+inline int Projects::getVersion(int id){
     return portal.projects(id-1).currentversion();
 }
 
-int Projects::getTotalVersion(int id){
+inline int Projects::getTotalVersion(int id){
     return portal.projects(id-1).totalversion();
 }
 
-int Projects::getModuloFactor(int id){
+inline int Projects::getModuloFactor(int id){
     return portal.projects(id-1).modulofactor();
 }
 

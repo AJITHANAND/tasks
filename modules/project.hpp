@@ -1,10 +1,8 @@
 #ifndef PROJECT_HPP
 #define PROJECT_HPP
-#include<bits/stdc++.h>
-using namespace std;
-#include "user.hpp"
+#include "../include/user.hpp"
 #include "../protobufs/project.pb.h"
-#include "../includes/fileoperations.hpp"
+#include "../include/fileoperations.hpp"
 #define endl "\n";
 
 const string tail ="projects.dat";

@@ -1,9 +1,7 @@
 #ifndef VERSION_HPP
 #define VERSION_HPP
-#include<bits/stdc++.h>
 #include "../protobufs/version.pb.h"
-#include "../includes/fileoperations.hpp"
-using namespace std;
+#include "../include/fileoperations.hpp"
 
 
 class Versions{

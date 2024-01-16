@@ -1,13 +1,9 @@
 #ifndef USER_HPP
 #define USER_HPP
-#include<bits/stdc++.h>
-#include "../includes/fileoperations.hpp"
+#include "../include/fileoperations.hpp"
 #include "../protobufs/user.pb.h"
 // #define users_file "Users.dat"
-#define endl "\n";
 const string users_file = "users.dat";
-
-using namespace std;
 
 class Users{
     User user;
