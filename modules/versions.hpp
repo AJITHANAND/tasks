@@ -89,7 +89,7 @@ class Versions{
             getline(cin,data);
             ops.set_content(ops.content()+data);
             this->new_version.set_projectid(project_id);
-            this->new_version.set_time(currentDateTime());
+            this->new_version.set_time(fileOperations::currentDateTime());
             this->new_version.mutable_operation()->CopyFrom(ops);
             
             return saveState(user_id,project_id,version_number,total_version,modulo_factor);
@@ -177,13 +177,13 @@ class Versions{
                 getline(cin,data);
             }
             string final =  ops.content();
-            replaceAllOccurences(final,sub,data);
+            fileOperations::replaceAllOccurences(final,sub,data);
 
             ops.set_content(final);
 
 
             this->new_version.set_projectid(project_id);
-            this->new_version.set_time(currentDateTime());
+            this->new_version.set_time(fileOperations::currentDateTime());
             this->new_version.mutable_operation()->CopyFrom(ops);
             
             return saveState(user_id,project_id,version_number,total_version,modulo_factor);

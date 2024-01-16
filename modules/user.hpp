@@ -48,7 +48,7 @@ class Users{
     public:
         bool logged_in =false;
         Users(){
-            fileExists(users_file);
+            fileOperations::fileExists(users_file);
         }
         bool Login(string username, string password){
             ifstream in_file(users_file,ios::binary);
