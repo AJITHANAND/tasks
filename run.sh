@@ -1,4 +1,4 @@
 cmake -S . -B build;
 cd build;
-make all;
+make all -j7;
 ./notepad;

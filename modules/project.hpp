@@ -4,7 +4,7 @@
 using namespace std;
 #include "user.hpp"
 #include "../protobufs/project.pb.h"
-#include "fileOpr.hpp"
+#include "../includes/fileoperations.hpp"
 #define endl "\n";
 
 const string tail ="projects.dat";
@@ -26,7 +26,7 @@ class Projects{
     bool init(int user_id){
         this->user_id=user_id;
         project_file=to_string(user_id)+"_"+tail;
-        fileExists(project_file);
+        fileOperations::fileExists(project_file);
         loadProjectData();
         return user_id != -1;
     }

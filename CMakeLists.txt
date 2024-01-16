@@ -14,9 +14,8 @@ protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS proto/user.proto proto/project.proto
 
 set(SOURCE_FILES
     src/notepad.cpp
-    modules/fileOpr.hpp
     modules/defproject.cpp
-    modules/fileOpr.cpp
+    modules/fileoperations.cpp
     modules/user.hpp
     modules/versions.hpp
 )
