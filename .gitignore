@@ -5,6 +5,7 @@ temp*.cpp
 *_data.dat
 notepad.o
 
+build/
 # Cmake 
 
 CMakeLists.txt.user
