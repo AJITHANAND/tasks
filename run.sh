@@ -1,3 +1,4 @@
-cmake -S . -B .;
+cmake -S . -B build;
+cd build;
 make all;
 ./notepad;

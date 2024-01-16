@@ -13,7 +13,7 @@ protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS proto/user.proto proto/project.proto
 # cmake_print_variables(${PROTO_HDRS})
 
 set(SOURCE_FILES
-    notepad.cpp
+    src/notepad.cpp
     modules/fileOpr.hpp
     modules/project.hpp
     modules/user.hpp
